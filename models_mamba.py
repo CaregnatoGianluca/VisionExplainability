@@ -162,7 +162,7 @@ def create_block(
         ssm_cfg = {}
     factory_kwargs = {"device": device, "dtype": dtype}
     # import ipdb; ipdb.set_trace()
-    mixer_cls = partial(Mamba, d_state=d_state, layer_idx=layer_idx, if_divide_out=if_divide_out, init_layer_scale=init_layer_scale, **ssm_cfg, **factory_kwargs)
+    mixer_cls = partial(Mamba, d_state=d_state, layer_idx=layer_idx, **ssm_cfg, **factory_kwargs)
     norm_cls = partial(
         nn.LayerNorm if not rms_norm else RMSNorm, eps=norm_epsilon, **factory_kwargs
     )
@@ -607,7 +607,7 @@ def vim_small_patch16_stride8_224_bimambav2_final_pool_mean_abs_pos_embed_with_m
 @register_model
 def vim_base_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_with_middle_cls_token_div2(pretrained=False, **kwargs):
     model = VisionMamba(
-        patch_size=16, embed_dim=768, d_state=16, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=True, if_devide_out=True, use_middle_cls_token=True, **kwargs)
+        patch_size=16, embed_dim=768, d_state=16, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=True, if_divide_out=True, use_middle_cls_token=True, **kwargs)
     model.default_cfg = _cfg()
     if pretrained:
         checkpoint = torch.hub.load_state_dict_from_url(
