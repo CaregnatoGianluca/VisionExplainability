@@ -1,5 +1,6 @@
 # Copyright (c) 2015-present, Facebook, Inc.
 # All rights reserved.
+from pyexpat import model
 import torch
 import torch.nn as nn
 from functools import partial
@@ -14,7 +15,7 @@ from timm.models.layers import DropPath, to_2tuple
 from timm.models.vision_transformer import _load_weights
 
 import math
-
+from einops import repeat
 from collections import namedtuple
 
 from mamba_ssm.modules.mamba_simple import Mamba
@@ -163,6 +164,27 @@ def create_block(
     factory_kwargs = {"device": device, "dtype": dtype}
     # import ipdb; ipdb.set_trace()
     mixer_cls = partial(Mamba, d_state=d_state, layer_idx=layer_idx, **ssm_cfg, **factory_kwargs)
+    mixer_cls.bimamba_type = bimamba_type
+    mixer_cls.if_divide_out = if_divide_out
+    mixer_cls.init_layer_scale = init_layer_scale
+
+
+    #d_model = 16
+    expand = 2
+    d_inner = int(expand * d_model)
+
+    A_b = repeat(
+        torch.arange(1, d_model + 1, dtype=torch.float32, device=device),
+        "n -> d n",
+        d=d_inner,
+    ).contiguous()
+    A_b_log = torch.log(A_b)  # Keep A_b_log in fp32
+    mixer_cls.A_b_log = torch.nn.Parameter(A_b_log)
+    mixer_cls.A_b_log._no_weight_decay = True
+
+    print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
+
     norm_cls = partial(
         nn.LayerNorm if not rms_norm else RMSNorm, eps=norm_epsilon, **factory_kwargs
     )
@@ -175,6 +197,12 @@ def create_block(
         residual_in_fp32=residual_in_fp32,
     )
     block.layer_idx = layer_idx
+
+
+
+    
+
+
     return block
 
 
