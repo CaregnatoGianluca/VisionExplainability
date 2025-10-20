@@ -85,7 +85,49 @@ class Block(nn.Module):
         self.fused_add_norm = fused_add_norm
         # import ipdb; ipdb.set_trace()
         self.mixer = mixer_cls(dim)
+
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        print(dim, dim, dim, dim, dim)
+        d_model = dim
+        expand = 2
+        d_inner = int(expand * d_model)
+        self.mixer.dt_rank = math.ceil(d_model / 16)
+
+
+        A_b = repeat(
+            torch.arange(1, d_model + 1, dtype=torch.float32, device=device),
+            "n -> d n",
+            d=d_inner,
+        ).contiguous()
+        A_b_log = torch.log(A_b)  # Keep A_b_log in fp32
+        self.mixer.A_b_log = torch.nn.Parameter(A_b_log)
+        self.mixer.A_b_log._no_weight_decay = True
+
+        factory_kwargs = {"device":device, "dtype":torch.float32}
+
+        self.mixer.conv1d_b = nn.Conv1d(
+            in_channels=self.mixer.d_inner,
+            out_channels=self.mixer.d_inner,
+            bias=False,
+            kernel_size=self.mixer.d_conv,
+            groups=self.mixer.d_inner,
+            padding=self.mixer.d_conv - 1,
+            **factory_kwargs,
+        )
+
+        self.mixer.x_proj_b = nn.Linear(
+            self.mixer.d_inner, self.mixer.dt_rank + self.mixer.d_state * 2, bias=False, **factory_kwargs
+        )
+
+        self.mixer.dt_proj_b = nn.Linear(self.mixer.dt_rank, self.mixer.d_inner, bias=True, **factory_kwargs)
+
+        self.mixer.D_b = nn.Parameter(torch.ones(self.mixer.d_inner, device=device))  # Keep in fp32
+        self.mixer.D_b._no_weight_decay = True
+
         self.norm = norm_cls(dim)
+
+
+
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
         if self.fused_add_norm:
             assert RMSNorm is not None, "RMSNorm import fails"
@@ -168,23 +210,6 @@ def create_block(
     mixer_cls.if_divide_out = if_divide_out
     mixer_cls.init_layer_scale = init_layer_scale
 
-
-    #d_model = 16
-    expand = 2
-    d_inner = int(expand * d_model)
-
-    A_b = repeat(
-        torch.arange(1, d_model + 1, dtype=torch.float32, device=device),
-        "n -> d n",
-        d=d_inner,
-    ).contiguous()
-    A_b_log = torch.log(A_b)  # Keep A_b_log in fp32
-    mixer_cls.A_b_log = torch.nn.Parameter(A_b_log)
-    mixer_cls.A_b_log._no_weight_decay = True
-
-    print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-
-
     norm_cls = partial(
         nn.LayerNorm if not rms_norm else RMSNorm, eps=norm_epsilon, **factory_kwargs
     )
@@ -197,11 +222,6 @@ def create_block(
         residual_in_fp32=residual_in_fp32,
     )
     block.layer_idx = layer_idx
-
-
-
-    
-
 
     return block
 
@@ -348,7 +368,7 @@ class VisionMamba(nn.Module):
         self.layers = nn.ModuleList(
             [
                 create_block(
-                    embed_dim,
+                    d_model=embed_dim,
                     d_state=d_state,
                     ssm_cfg=ssm_cfg,
                     norm_epsilon=norm_epsilon,
