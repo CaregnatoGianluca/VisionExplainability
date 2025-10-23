@@ -87,6 +87,7 @@ class Block(nn.Module):
         self.mixer = mixer_cls(dim)
 
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        #device = torch.device('cpu')
         print(dim, dim, dim, dim, dim)
         d_model = dim
         expand = 2
@@ -603,8 +604,9 @@ class VisionMamba(nn.Module):
 @register_model
 def vim_tiny_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_with_midclstok_div2(pretrained=False, **kwargs):
     d_state = 192
+    num_classes = 200
     model = VisionMamba(
-        patch_size=16, d_state=d_state, embed_dim=192, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=True, if_divide_out=True, use_middle_cls_token=True, **kwargs)
+        patch_size=16, d_state=d_state, embed_dim=192, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=True, if_divide_out=True, use_middle_cls_token=True, num_classes=num_classes, **kwargs)
     model.default_cfg = _cfg()
     if pretrained:
         checkpoint = torch.hub.load_state_dict_from_url(
