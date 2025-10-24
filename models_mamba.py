@@ -88,11 +88,11 @@ class Block(nn.Module):
 
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         #device = torch.device('cpu')
-        print(dim, dim, dim, dim, dim)
+        dim = 16
         d_model = dim
-        expand = 2
+        expand = 24
         d_inner = int(expand * d_model)
-        self.mixer.dt_rank = math.ceil(d_model / 16)
+        self.mixer.dt_rank = 12
 
 
         A_b = repeat(
@@ -125,7 +125,7 @@ class Block(nn.Module):
         self.mixer.D_b = nn.Parameter(torch.ones(self.mixer.d_inner, device=device))  # Keep in fp32
         self.mixer.D_b._no_weight_decay = True
 
-        self.norm = norm_cls(dim)
+        self.norm = norm_cls(192)
 
 
 
@@ -184,7 +184,7 @@ class Block(nn.Module):
 
 
 def create_block(
-    d_model,
+    d_model = 16,
     d_state=16,
     ssm_cfg=None,
     norm_epsilon=1e-5,
@@ -282,9 +282,9 @@ class VisionMamba(nn.Module):
                  stride=16,
                  depth=24, 
                  embed_dim=192, 
-                 d_state=16,
+                 d_state=192,
                  channels=3, 
-                 num_classes=1000,
+                 num_classes=200,
                  ssm_cfg=None, 
                  drop_rate=0.,
                  drop_path_rate=0.1,
@@ -357,6 +357,8 @@ class VisionMamba(nn.Module):
                 pt_seq_len=pt_hw_seq_len,
                 ft_seq_len=hw_seq_len
             )
+        
+        print(num_classes)
         self.head = nn.Linear(self.num_features, num_classes) if num_classes > 0 else nn.Identity()
 
 
@@ -603,8 +605,8 @@ class VisionMamba(nn.Module):
 
 @register_model
 def vim_tiny_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_with_midclstok_div2(pretrained=False, **kwargs):
-    d_state = 192
-    num_classes = 200
+    d_state = 16
+    num_classes = 1000
     model = VisionMamba(
         patch_size=16, d_state=d_state, embed_dim=192, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=True, if_divide_out=True, use_middle_cls_token=True, num_classes=num_classes, **kwargs)
     model.default_cfg = _cfg()
