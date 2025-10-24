@@ -5,7 +5,7 @@ import pandas as pd
 import torch, os
 import numpy as np
 
-class CUB():
+class CUB(data.Dataset):
     def __init__(self, root, dataset_type='train', train_ratio=1, valid_seed=123, transform=None, target_transform=None):
         self.root = root
         self.transform = transform
@@ -33,12 +33,15 @@ class CUB():
                 raise ValueError('train_ratio should be less than 1!')
             if dataset_type == 'train':
                 df = df.iloc[indices[:split_idx]]
-            else:       # dataset_type == 'valid'
+            else:    # dataset_type == 'valid'
                 df = df.iloc[indices[split_idx:]]
         else:
             raise ValueError('Unsupported dataset_type!')
+            
         self.img_name_list = df['Image'].tolist()
         self.label_list = df['Label'].tolist()
+        self.id_list = df.index.tolist() 
+        
         # Convert greyscale images to RGB mode
         self._convert2rgb()
 
@@ -49,11 +52,13 @@ class CUB():
         img_path = os.path.join(self.root, 'images', self.img_name_list[idx])
         image = Image.open(img_path)
         target = self.label_list[idx]
+        image_id = self.id_list[idx]
         if self.transform:
             image = self.transform(image)
         if self.target_transform:
             target = self.target_transform(target)
-        return image, target
+        return image, target, image_id 
+    
 
     def _convert2rgb(self):
         for i, img_name in enumerate(self.img_name_list):
