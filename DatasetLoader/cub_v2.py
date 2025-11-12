@@ -41,7 +41,7 @@ class cub200(torch.utils.data.Dataset):
         img = Image.fromarray(img)
         if self.transform is not None:
             img = self.transform(img)
-        return img, label
+        return img, label, idx
 
     def _check_processed(self):
         assert os.path.isdir(self.root) == True
