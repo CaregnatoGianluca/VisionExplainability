@@ -1,0 +1,106 @@
++ set -e
++ cd /home/caregnatog/VisionExplainability/CNN
++ IMG=docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-runtime
++ REQ=/home/caregnatog/VisionExplainability/requirements.txt
+++ date
++ echo 'Job started at: Thu Nov 13 20:14:32 CET 2025'
+++ hostname
++ echo 'Running on host: gpu5.dei.unipd.it'
++ srun singularity exec --nv docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-runtime bash -lc 'python3 -m pip install --user --upgrade pip && python3 -m pip install --user -r '\''/home/caregnatog/VisionExplainability/requirements.txt'\'''
+INFO:    Using cached SIF image
+  WARNING: The script wsdump is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script tqdm is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script tabulate is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script isympy is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script sqlformat is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script send2trash is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script pygmentize is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script f2py is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script markdown_py is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script mako-render is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script pyjson5 is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script gunicorn is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts fonttools, pyftmerge, pyftsubset and ttx are installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts debugpy and debugpy-adapter are installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script normalizer is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script pybabel is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts jupyter, jupyter-migrate and jupyter-troubleshoot are installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script flask is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts yapf and yapf-diff are installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts jupyter-kernel, jupyter-kernelspec and jupyter-run are installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts ipython and ipython3 are installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script huggingface-cli is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts databricks and dbfs are installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script alembic is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script mlflow is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script jsonschema is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script httpx is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script transformers-cli is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script jupyter-trust is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script jupyter-console is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script datasets-cli is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script jupyter-execute is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script jupyter-events is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts jupyter-dejavu and jupyter-nbconvert are installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script jupyter-server is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts jlpm, jupyter-lab, jupyter-labextension and jupyter-labhub are installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script jupyter-notebook is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
++ srun singularity exec --nv docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-runtime bash -lc 'python3 -c '\''import numpy, pytorch_grad_cam; print("numpy OK:", numpy.__version__)'\'''
+INFO:    Using cached SIF image
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/home/caregnatog/.local/lib/python3.10/site-packages/pytorch_grad_cam/__init__.py", line 1, in <module>
+    from pytorch_grad_cam.grad_cam import GradCAM
+  File "/home/caregnatog/.local/lib/python3.10/site-packages/pytorch_grad_cam/grad_cam.py", line 3, in <module>
+    from pytorch_grad_cam.base_cam import BaseCAM
+  File "/home/caregnatog/.local/lib/python3.10/site-packages/pytorch_grad_cam/base_cam.py", line 8, in <module>
+    from pytorch_grad_cam.utils.image import scale_cam_image
+  File "/home/caregnatog/.local/lib/python3.10/site-packages/pytorch_grad_cam/utils/__init__.py", line 1, in <module>
+    from pytorch_grad_cam.utils.image import deprocess_image
+  File "/home/caregnatog/.local/lib/python3.10/site-packages/pytorch_grad_cam/utils/image.py", line 4, in <module>
+    import cv2
+  File "/home/caregnatog/.local/lib/python3.10/site-packages/cv2/__init__.py", line 181, in <module>
+    bootstrap()
+  File "/home/caregnatog/.local/lib/python3.10/site-packages/cv2/__init__.py", line 153, in bootstrap
+    native_module = importlib.import_module("cv2")
+  File "/opt/conda/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+ImportError: libgthread-2.0.so.0: cannot open shared object file: No such file or directory
+srun: error: gpu5: task 0: Exited with exit code 1

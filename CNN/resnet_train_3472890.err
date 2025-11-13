@@ -1,0 +1,18 @@
++ set -e
++ cd /home/caregnatog/VisionExplainability/CNN
++ IMG=docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-devel
++ REQ=/home/caregnatog/VisionExplainability/requirements.txt
+++ date
++ echo 'Job started at: Thu Nov 13 20:21:07 CET 2025'
+++ hostname
++ echo 'Running on host: gpu5.dei.unipd.it'
++ srun singularity exec --nv docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-devel bash -lc 'python3 -m pip install --user --upgrade pip && python3 -m pip install --user -r '\''/home/caregnatog/VisionExplainability/requirements.txt'\'''
+INFO:    Converting OCI blobs to SIF format
+INFO:    Starting build...
+INFO:    Fetching OCI image...
+INFO:    Extracting OCI image...
+INFO:    Inserting Apptainer configuration...
+INFO:    Creating SIF file...
+FATAL:   Unable to handle docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-devel uri: while building SIF from layers: while creating squashfs: /usr/libexec/apptainer/bin/mksquashfs command failed: signal: killed: 
+slurmstepd: error: Detected 1 oom_kill event in StepId=3472890.0. Some of the step tasks have been OOM Killed.
+srun: error: gpu5: task 0: Out Of Memory

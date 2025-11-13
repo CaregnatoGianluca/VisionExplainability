@@ -10,7 +10,7 @@
 #SBATCH --gres=gpu:a40:1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=16G
+#SBATCH --mem=32G
 
 set -x
 set -e
@@ -18,7 +18,7 @@ set -e
 cd /home/caregnatog/VisionExplainability/CNN
 
 # Use official PyTorch CUDA image through Singularity
-IMG="docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn9-runtime"
+IMG="docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-devel"
 
 REQ="/home/caregnatog/VisionExplainability/requirements.txt"
 
