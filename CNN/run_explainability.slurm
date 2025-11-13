@@ -45,9 +45,9 @@ echo "PATH: $PATH"
 echo "Python in use: $(which python3)"
 python3 --version
 
-python3 explainability.py
+# python3 explainability.py
 
-# srun singularity exec --nv /nfsd/opt/sif-images/tensorflow_latest-gpu-new.sif python ResNet_training.py
+srun singularity exec --nv /nfsd/opt/sif-images/tensorflow_latest-gpu-new.sif python explainability.py
 
 # Optional: Print out the final allocation for verification
 echo "Job finished at: $(date)"
