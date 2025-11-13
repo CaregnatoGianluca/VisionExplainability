@@ -32,13 +32,15 @@ set -x  # print commands as they run
 
 cd $HOME/VisionExplainability/CNN
 
+source "$HOME/venvs/VisionExpainability/bin/activate"
+
 echo "Job started at: $(date)"
 echo "Running on host: $(hostname)"
 echo "Node list: $SLURM_NODELIST"
 echo "Job ID: $SLURM_JOB_ID"
 echo "PATH: $PATH"
 
-source "$HOME/venvs/VisionExpainability/bin/activate"
+
 
 echo "Python in use: $(which python3)"
 python3 --version
