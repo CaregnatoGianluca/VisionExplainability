@@ -3,44 +3,38 @@
 #SBATCH --job-name=resnet_train
 #SBATCH --output=resnet_train_%j.out
 #SBATCH --error=resnet_train_%j.err
-
 #SBATCH --mail-user=gianluca.caregnato@studenti.unipd.it
 #SBATCH --mail-type=BEGIN,END,FAIL
-
 #SBATCH --time=08:00:00
 #SBATCH --partition=allgroups
-
 #SBATCH --gres=gpu:a40:1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=16G
 
-set -x  # print commands
+set -x
+set -e
 
-# 1) Go to project
 cd /home/caregnatog/VisionExplainability/CNN
 
-# 2) Activate venv
-source /home/caregnatog/venvs/VisionExpainability/bin/activate
+# Use official PyTorch CUDA image through Singularity
+IMG="docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn9-runtime"
+
+REQ="/home/caregnatog/VisionExplainability/requirements.txt"
 
 echo "Job started at: $(date)"
 echo "Running on host: $(hostname)"
-echo "Node list: $SLURM_NODELIST"
-echo "Job ID: $SLURM_JOB_ID"
-echo "PATH: $PATH"
-echo "Python in use: $(which python3)"
 
-# 3) Show Python version and site-packages
-python3 --version
-python3 -c "import sys, site; print(sys.executable); print(sys.version); print('site-packages:', site.getsitepackages())"
+# 1) Install packages into ~/.local (PERSISTENT)
+srun singularity exec --nv "$IMG" \
+    bash -lc "python3 -m pip install --user --upgrade pip && python3 -m pip install --user -r '$REQ'"
 
-# 4) Check that numpy and pytorch_grad_cam are importable
-python3 -c "import numpy; print('numpy OK:', numpy.__version__)"
-python3 -c 'import pytorch_grad_cam; print("pytorch_grad_cam OK")'
+# 2) Sanity check inside container
+srun singularity exec --nv "$IMG" \
+    bash -lc "python3 -c 'import numpy, pytorch_grad_cam; print(\"numpy OK:\", numpy.__version__)'"
 
-# 5) Run your script directly with venv python (NO Singularity)
-srun python3 explainability.py
+# 3) Run your script
+srun singularity exec --nv "$IMG" \
+    bash -lc 'python3 /home/caregnatog/VisionExplainability/CNN/explainability.py'
 
 echo "Job finished at: $(date)"
-echo "SLURM Job ID: $SLURM_JOB_ID"
-echo "Running on hosts: $SLURM_NODELIST"
