@@ -1,37 +1,22 @@
 #!/bin/bash -l
-
-#SBATCH --job-name resnet_train
-
-#SBATCH --output resnet_train_%j.out
-#SBATCH --error resnet_train_%j.err
-
-#SBATCH --mail-user gianluca.caregnato@studenti.unipd.it
-#SBATCH --mail-type BEGIN,END,FAIL
-
-#SBATCH --time 08:00:00
-
-#SBATCH --partition allgroups
-
-# --- GPU Configuration ---
+#SBATCH --job-name=resnet_train
+#SBATCH --output=resnet_train_%j.out
+#SBATCH --error=resnet_train_%j.err
+#SBATCH --mail-user=gianluca.caregnato@studenti.unipd.it
+#SBATCH --mail-type=BEGIN,END,FAIL
+#SBATCH --time=08:00:00
+#SBATCH --partition=allgroups
 #SBATCH --gres=gpu:a40:1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=16G
 
-# --- CPU/Memory Configuration ---
-# Number of tasks. For a single GPU job, you typically only need 1 task.
-# The training is not intrinsically multi-threaded/distributed here.
-#SBATCH --ntasks 1
+set -x
+set -e
 
-# Number of CPUs per task. Use this to allocate CPU cores for data loading/preprocessing.
-# Your code uses DATASET_WORK_NUMBER = 8, so requesting 8 CPUs is appropriate.
-#SBATCH --cpus-per-task 8
+cd "$HOME/VisionExplainability/CNN"
 
-#SBATCH --mem 16G
-
-# --- Execute Commands ---
-
-set -x  # print commands as they run
-
-cd $HOME/VisionExplainability/CNN
-
+# Activate venv
 source "$HOME/venvs/VisionExpainability/bin/activate"
 
 echo "Job started at: $(date)"
@@ -39,17 +24,15 @@ echo "Running on host: $(hostname)"
 echo "Node list: $SLURM_NODELIST"
 echo "Job ID: $SLURM_JOB_ID"
 echo "PATH: $PATH"
-
-
-
 echo "Python in use: $(which python3)"
 python3 --version
 
-# python3 explainability.py
+# Sanity check: package
+python3 -c "import numpy; print('numpy OK:', numpy.__version__)"
 
-srun singularity exec --nv /nfsd/opt/sif-images/tensorflow_latest-gpu-new.sif python explainability.py
+# Run directly with venv python (NO Singularity)
+srun python3 explainability.py
 
-# Optional: Print out the final allocation for verification
 echo "Job finished at: $(date)"
 echo "SLURM Job ID: $SLURM_JOB_ID"
 echo "Running on hosts: $SLURM_NODELIST"
