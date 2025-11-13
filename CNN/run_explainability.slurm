@@ -43,7 +43,7 @@ source "$HOME/venvs/VisionExpainability/bin/activate"
 echo "Python in use: $(which python3)"
 python3 --version
 
-srun python3 explainability.py
+python3 explainability.py
 
 # srun singularity exec --nv /nfsd/opt/sif-images/tensorflow_latest-gpu-new.sif python ResNet_training.py
 
