@@ -38,7 +38,7 @@ echo "Node list: $SLURM_NODELIST"
 echo "Job ID: $SLURM_JOB_ID"
 echo "PATH: $PATH"
 
-source "$HOME/venvs/VisionExplainability/bin/activate"
+source "$HOME/venvs/VisionExpainability/bin/activate"
 
 echo "Python in use: $(which python3)"
 python3 --version
