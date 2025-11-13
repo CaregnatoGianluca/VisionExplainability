@@ -1,0 +1,8 @@
+Job started at: Thu Nov 13 18:03:10 CET 2025
+Running on host: gpu5.dei.unipd.it
+Node list: gpu5
+Job ID: 3472872
+PATH: /usr/share/Modules/bin:/usr/local/cuda/bin:/home/caregnatog/venvs/VisionExpainability/bin:/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/nfsd/local/common/bin
+Job finished at: Thu Nov 13 18:03:10 CET 2025
+SLURM Job ID: 3472872
+Running on hosts: gpu5
