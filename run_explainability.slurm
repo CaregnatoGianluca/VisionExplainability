@@ -13,7 +13,7 @@
 #SBATCH --partition allgroups
 
 # --- GPU Configuration ---
-#SBATCH --gres=gpu:rtx:1
+#SBATCH --gres=gpu:a40:1
 
 # --- CPU/Memory Configuration ---
 # Number of tasks. For a single GPU job, you typically only need 1 task.
