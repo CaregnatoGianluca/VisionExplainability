@@ -30,7 +30,7 @@
 
 set -x  # print commands as they run
 
-cd $HOME/VisionExplanability/CNN
+cd $HOME/VisionExplainability/CNN
 
 echo "Job started at: $(date)"
 echo "Running on host: $(hostname)"
@@ -38,7 +38,11 @@ echo "Node list: $SLURM_NODELIST"
 echo "Job ID: $SLURM_JOB_ID"
 echo "PATH: $PATH"
 
-srun singularity exec --nv /nfsd/opt/sif-images/tensorflow_latest-gpu-new.sif python ResNet_training.py
+source ~/venvs/VisionExplainability/bin/activate
+
+srun python3 explainability.py
+
+# srun singularity exec --nv /nfsd/opt/sif-images/tensorflow_latest-gpu-new.sif python ResNet_training.py
 
 # Optional: Print out the final allocation for verification
 echo "Job finished at: $(date)"
