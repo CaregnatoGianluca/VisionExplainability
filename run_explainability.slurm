@@ -5,7 +5,7 @@
 #SBATCH --output resnet_train_%j.out
 #SBATCH --error resnet_train_%j.err
 
-#SBATCH --mail-user francesco.roncolato@studenti.unipd.it
+#SBATCH --mail-user gianluca.caregnato@studenti.unipd.it
 #SBATCH --mail-type BEGIN,END,FAIL
 
 #SBATCH --time 08:00:00
