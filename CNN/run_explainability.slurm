@@ -17,10 +17,9 @@ set -e
 
 cd /home/caregnatog/VisionExplainability/CNN
 
-# Use official PyTorch CUDA image through Singularity
-IMG="docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-runtime"
+IMG="/nfsd/opt/sif-images/tensorflow_latest-gpu-new.sif"
 
-REQ="/home/caregnatog/VisionExplainability/requirements.txt"
+REQ="/home/caregnatog/VisionExplainability/requirements2.txt"
 
 echo "Job started at: $(date)"
 echo "Running on host: $(hostname)"
