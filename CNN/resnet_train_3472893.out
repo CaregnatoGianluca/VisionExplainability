@@ -1,0 +1,4 @@
+Job started at: Thu Nov 13 21:00:45 CET 2025
+Running on host: gpu5.dei.unipd.it
+Requirement already satisfied: pip in /home/caregnatog/.local/lib/python3.10/site-packages (25.3)
+Processing /home/conda/feedstock_root/build_artifacts/brotli-split_1761591974641/work (from -r /home/caregnatog/VisionExplainability/requirements2.txt (line 1))

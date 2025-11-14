@@ -1,0 +1,13 @@
++ set -e
++ cd /home/caregnatog/VisionExplainability/CNN
++ IMG=docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-runtime
++ REQ=/home/caregnatog/VisionExplainability/requirements2.txt
+++ date
++ echo 'Job started at: Thu Nov 13 21:00:45 CET 2025'
+++ hostname
++ echo 'Running on host: gpu5.dei.unipd.it'
++ srun singularity exec --nv docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-runtime bash -lc 'python3 -m pip install --user --upgrade pip && python3 -m pip install --user -r '\''/home/caregnatog/VisionExplainability/requirements2.txt'\'''
+INFO:    Using cached SIF image
+ERROR: Could not install packages due to an OSError: [Errno 2] No such file or directory: '/home/conda/feedstock_root/build_artifacts/brotli-split_1761591974641/work'
+
+srun: error: gpu5: task 0: Exited with exit code 1

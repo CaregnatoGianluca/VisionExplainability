@@ -18,7 +18,7 @@ set -e
 cd /home/caregnatog/VisionExplainability/CNN
 
 # Use official PyTorch CUDA image through Singularity
-IMG="docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-devel"
+IMG="docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-runtime"
 
 REQ="/home/caregnatog/VisionExplainability/requirements.txt"
 

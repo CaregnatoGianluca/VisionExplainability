@@ -1,0 +1,497 @@
+Job started at: Fri Nov 14 08:34:36 CET 2025
+Running on host: gpu5.dei.unipd.it
+Requirement already satisfied: pip in /home/caregnatog/.local/lib/python3.10/site-packages (25.3)
+Requirement already satisfied: addict==2.4.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 1)) (2.4.0)
+Requirement already satisfied: aiohttp==3.9.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 2)) (3.9.1)
+Requirement already satisfied: aiosignal==1.3.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 3)) (1.3.1)
+Requirement already satisfied: alembic==1.13.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 4)) (1.13.0)
+Requirement already satisfied: anyio==4.11.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 5)) (4.11.0)
+Requirement already satisfied: argon2-cffi==25.1.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 6)) (25.1.0)
+Requirement already satisfied: argon2-cffi-bindings==25.1.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 7)) (25.1.0)
+Requirement already satisfied: arrow==1.4.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 8)) (1.4.0)
+Requirement already satisfied: asttokens==3.0.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 9)) (3.0.0)
+Requirement already satisfied: async-lru==2.0.5 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 10)) (2.0.5)
+Requirement already satisfied: async-timeout==4.0.3 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 11)) (4.0.3)
+Requirement already satisfied: attrs==23.1.0 in /opt/conda/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 12)) (23.1.0)
+Requirement already satisfied: babel==2.17.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 13)) (2.17.0)
+Requirement already satisfied: beautifulsoup4==4.14.2 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 14)) (4.14.2)
+Requirement already satisfied: bleach==6.2.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 15)) (6.2.0)
+Requirement already satisfied: blinker==1.7.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 16)) (1.7.0)
+Requirement already satisfied: captum==0.8.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 17)) (0.8.0)
+Requirement already satisfied: certifi==2023.11.17 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 18)) (2023.11.17)
+Requirement already satisfied: cffi==2.0.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 19)) (2.0.0)
+Requirement already satisfied: charset-normalizer==3.3.2 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 20)) (3.3.2)
+Requirement already satisfied: click==8.1.7 in /opt/conda/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 21)) (8.1.7)
+Requirement already satisfied: cloudpickle==3.0.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 22)) (3.0.0)
+Requirement already satisfied: comm==0.2.3 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 23)) (0.2.3)
+Collecting contourpy==1.2.0 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 24))
+  Using cached contourpy-1.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.8 kB)
+Requirement already satisfied: cycler==0.12.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 25)) (0.12.1)
+Requirement already satisfied: databricks-cli==0.18.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 26)) (0.18.0)
+Requirement already satisfied: datasets==2.14.5 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 27)) (2.14.5)
+Requirement already satisfied: debugpy==1.8.17 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 28)) (1.8.17)
+Requirement already satisfied: decorator==5.2.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 29)) (5.2.1)
+Requirement already satisfied: defusedxml==0.7.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 30)) (0.7.1)
+Requirement already satisfied: dill==0.3.7 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 31)) (0.3.7)
+Requirement already satisfied: docker==6.1.3 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 32)) (6.1.3)
+Requirement already satisfied: einops==0.7.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 33)) (0.7.0)
+Requirement already satisfied: entrypoints==0.4 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 34)) (0.4)
+Requirement already satisfied: exceptiongroup==1.3.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 35)) (1.3.0)
+Requirement already satisfied: executing==2.2.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 36)) (2.2.1)
+Requirement already satisfied: fastjsonschema==2.21.2 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 37)) (2.21.2)
+Requirement already satisfied: filelock==3.13.1 in /opt/conda/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 38)) (3.13.1)
+Requirement already satisfied: Flask==3.0.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 39)) (3.0.0)
+Collecting fonttools==4.46.0 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 40))
+  Using cached fonttools-4.46.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (156 kB)
+Requirement already satisfied: fqdn==1.5.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 41)) (1.5.1)
+Requirement already satisfied: frozenlist==1.4.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 42)) (1.4.0)
+Collecting fsspec==2023.6.0 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 43))
+  Using cached fsspec-2023.6.0-py3-none-any.whl.metadata (6.7 kB)
+Requirement already satisfied: gitdb==4.0.11 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 44)) (4.0.11)
+Requirement already satisfied: GitPython==3.1.40 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 45)) (3.1.40)
+Requirement already satisfied: grad-cam==1.5.5 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 46)) (1.5.5)
+Requirement already satisfied: greenlet==3.0.2 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 47)) (3.0.2)
+Requirement already satisfied: gunicorn==21.2.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 48)) (21.2.0)
+Requirement already satisfied: h11==0.16.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 49)) (0.16.0)
+Requirement already satisfied: httpcore==1.0.9 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 50)) (1.0.9)
+Requirement already satisfied: httpx==0.28.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 51)) (0.28.1)
+Requirement already satisfied: huggingface-hub==0.19.4 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 52)) (0.19.4)
+Requirement already satisfied: idna==3.6 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 53)) (3.6)
+Requirement already satisfied: importlib-metadata==7.0.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 54)) (7.0.0)
+Requirement already satisfied: ipykernel==7.0.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 55)) (7.0.1)
+Requirement already satisfied: ipython==8.37.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 56)) (8.37.0)
+Requirement already satisfied: ipywidgets==8.1.7 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 57)) (8.1.7)
+Requirement already satisfied: isoduration==20.11.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 58)) (20.11.0)
+Requirement already satisfied: itsdangerous==2.1.2 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 59)) (2.1.2)
+Requirement already satisfied: jedi==0.19.2 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 60)) (0.19.2)
+Requirement already satisfied: Jinja2==3.1.2 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 61)) (3.1.2)
+Collecting joblib==1.3.2 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 62))
+  Using cached joblib-1.3.2-py3-none-any.whl.metadata (5.4 kB)
+Requirement already satisfied: json5==0.12.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 63)) (0.12.1)
+Requirement already satisfied: jsonpointer==3.0.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 64)) (3.0.0)
+Requirement already satisfied: jsonschema==4.25.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 65)) (4.25.1)
+Requirement already satisfied: jsonschema-specifications==2025.9.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 66)) (2025.9.1)
+Requirement already satisfied: jupyter==1.1.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 67)) (1.1.1)
+Requirement already satisfied: jupyter-console==6.6.3 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 68)) (6.6.3)
+Requirement already satisfied: jupyter-events==0.12.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 69)) (0.12.0)
+Requirement already satisfied: jupyter-lsp==2.3.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 70)) (2.3.0)
+Requirement already satisfied: jupyter_client==8.6.3 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 71)) (8.6.3)
+Requirement already satisfied: jupyter_core==5.9.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 72)) (5.9.1)
+Requirement already satisfied: jupyter_server==2.17.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 73)) (2.17.0)
+Requirement already satisfied: jupyter_server_terminals==0.5.3 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 74)) (0.5.3)
+Requirement already satisfied: jupyterlab==4.4.10 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 75)) (4.4.10)
+Requirement already satisfied: jupyterlab_pygments==0.3.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 76)) (0.3.0)
+Requirement already satisfied: jupyterlab_server==2.28.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 77)) (2.28.0)
+Requirement already satisfied: jupyterlab_widgets==3.0.15 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 78)) (3.0.15)
+Collecting kiwisolver==1.4.5 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 79))
+  Using cached kiwisolver-1.4.5-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl.metadata (6.4 kB)
+Requirement already satisfied: lark==1.3.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 80)) (1.3.0)
+Requirement already satisfied: Mako==1.3.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 81)) (1.3.0)
+Requirement already satisfied: Markdown==3.5.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 82)) (3.5.1)
+Requirement already satisfied: MarkupSafe==2.1.3 in /opt/conda/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 83)) (2.1.3)
+Collecting matplotlib==3.8.2 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 84))
+  Using cached matplotlib-3.8.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.8 kB)
+Requirement already satisfied: matplotlib-inline==0.2.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 85)) (0.2.1)
+Requirement already satisfied: mistune==3.1.4 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 86)) (3.1.4)
+Requirement already satisfied: mlflow==2.9.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 87)) (2.9.1)
+Requirement already satisfied: mmcv==1.3.8 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 88)) (1.3.8)
+Requirement already satisfied: mmsegmentation==0.14.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 89)) (0.14.1)
+Requirement already satisfied: mpmath==1.3.0 in /opt/conda/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 90)) (1.3.0)
+Requirement already satisfied: multidict==6.0.4 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 91)) (6.0.4)
+Requirement already satisfied: multiprocess==0.70.15 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 92)) (0.70.15)
+Requirement already satisfied: nbclient==0.10.2 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 93)) (0.10.2)
+Requirement already satisfied: nbconvert==7.16.6 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 94)) (7.16.6)
+Requirement already satisfied: nbformat==5.10.4 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 95)) (5.10.4)
+Requirement already satisfied: nest-asyncio==1.6.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 96)) (1.6.0)
+Requirement already satisfied: networkx==3.2.1 in /opt/conda/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 97)) (3.2.1)
+Requirement already satisfied: ninja==1.13.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 98)) (1.13.0)
+Requirement already satisfied: notebook==7.4.7 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 99)) (7.4.7)
+Requirement already satisfied: notebook_shim==0.2.4 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 100)) (0.2.4)
+Collecting numpy==1.26.2 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 101))
+  Using cached numpy-1.26.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+Requirement already satisfied: oauthlib==3.2.2 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 102)) (3.2.2)
+Collecting opencv-python-headless==4.8.1.78 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 103))
+  Using cached opencv_python_headless-4.8.1.78-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (19 kB)
+Requirement already satisfied: overrides==7.7.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 104)) (7.7.0)
+Collecting packaging==23.2 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 105))
+  Downloading packaging-23.2-py3-none-any.whl.metadata (3.2 kB)
+Collecting pandas==2.1.3 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 106))
+  Using cached pandas-2.1.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (18 kB)
+Requirement already satisfied: pandocfilters==1.5.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 107)) (1.5.1)
+Requirement already satisfied: parso==0.8.5 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 108)) (0.8.5)
+Requirement already satisfied: pexpect==4.9.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 109)) (4.9.0)
+Collecting Pillow==10.1.0 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 110))
+  Using cached Pillow-10.1.0-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (9.5 kB)
+Requirement already satisfied: platformdirs==4.1.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 111)) (4.1.0)
+Requirement already satisfied: prettytable==3.9.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 112)) (3.9.0)
+Requirement already satisfied: prometheus_client==0.23.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 113)) (0.23.1)
+Requirement already satisfied: prompt_toolkit==3.0.52 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 114)) (3.0.52)
+Requirement already satisfied: protobuf==4.25.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 115)) (4.25.1)
+Requirement already satisfied: psutil==7.1.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 116)) (7.1.1)
+Requirement already satisfied: ptyprocess==0.7.0 in /opt/conda/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 117)) (0.7.0)
+Requirement already satisfied: pure_eval==0.2.3 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 118)) (0.2.3)
+Requirement already satisfied: pyarrow==14.0.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 119)) (14.0.1)
+Requirement already satisfied: pyarrow-hotfix==0.6 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 120)) (0.6)
+Requirement already satisfied: pycparser==2.23 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 121)) (2.23)
+Requirement already satisfied: Pygments==2.19.2 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 122)) (2.19.2)
+Requirement already satisfied: PyJWT==2.8.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 123)) (2.8.0)
+Collecting pyparsing==3.1.1 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 124))
+  Using cached pyparsing-3.1.1-py3-none-any.whl.metadata (5.1 kB)
+Collecting python-dateutil==2.8.2 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 125))
+  Using cached python_dateutil-2.8.2-py2.py3-none-any.whl.metadata (8.2 kB)
+Requirement already satisfied: python-hostlist==1.23.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 126)) (1.23.0)
+Requirement already satisfied: python-json-logger==4.0.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 127)) (4.0.0)
+Requirement already satisfied: pytoolconfig==1.3.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 128)) (1.3.1)
+Collecting pytz==2023.3.post1 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 129))
+  Using cached pytz-2023.3.post1-py2.py3-none-any.whl.metadata (22 kB)
+Requirement already satisfied: PyYAML==6.0.1 in /opt/conda/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 130)) (6.0.1)
+Requirement already satisfied: pyzmq==27.1.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 131)) (27.1.0)
+Requirement already satisfied: querystring-parser==1.2.4 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 132)) (1.2.4)
+Requirement already satisfied: referencing==0.37.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 133)) (0.37.0)
+Requirement already satisfied: regex==2023.10.3 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 134)) (2023.10.3)
+Requirement already satisfied: requests==2.31.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 135)) (2.31.0)
+Requirement already satisfied: rfc3339-validator==0.1.4 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 136)) (0.1.4)
+Requirement already satisfied: rfc3986-validator==0.1.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 137)) (0.1.1)
+Requirement already satisfied: rfc3987-syntax==1.1.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 138)) (1.1.0)
+Requirement already satisfied: rope==1.14.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 139)) (1.14.0)
+Requirement already satisfied: rpds-py==0.28.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 140)) (0.28.0)
+Requirement already satisfied: safetensors==0.4.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 141)) (0.4.1)
+Collecting scikit-learn==1.3.2 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 142))
+  Using cached scikit_learn-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (11 kB)
+Collecting scipy==1.11.4 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 143))
+  Using cached scipy-1.11.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+Requirement already satisfied: Send2Trash==1.8.3 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 144)) (1.8.3)
+Collecting six==1.16.0 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 145))
+  Downloading six-1.16.0-py2.py3-none-any.whl.metadata (1.8 kB)
+Requirement already satisfied: smmap==5.0.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 146)) (5.0.1)
+Requirement already satisfied: sniffio==1.3.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 147)) (1.3.1)
+Requirement already satisfied: soupsieve==2.8 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 148)) (2.8)
+Requirement already satisfied: SQLAlchemy==2.0.23 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 149)) (2.0.23)
+Requirement already satisfied: sqlparse==0.4.4 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 150)) (0.4.4)
+Requirement already satisfied: stack-data==0.6.3 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 151)) (0.6.3)
+Collecting sympy==1.12 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 152))
+  Using cached sympy-1.12-py3-none-any.whl.metadata (12 kB)
+Requirement already satisfied: tabulate==0.9.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 153)) (0.9.0)
+Requirement already satisfied: terminado==0.18.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 154)) (0.18.1)
+Collecting threadpoolctl==3.2.0 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 155))
+  Using cached threadpoolctl-3.2.0-py3-none-any.whl.metadata (10.0 kB)
+Requirement already satisfied: timm==0.4.12 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 156)) (0.4.12)
+Requirement already satisfied: tinycss2==1.4.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 157)) (1.4.0)
+Requirement already satisfied: tokenizers==0.19.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 158)) (0.19.1)
+Requirement already satisfied: tomli==2.0.1 in /opt/conda/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 159)) (2.0.1)
+Requirement already satisfied: tornado==6.5.2 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 160)) (6.5.2)
+Collecting tqdm==4.66.1 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 161))
+  Using cached tqdm-4.66.1-py3-none-any.whl.metadata (57 kB)
+Requirement already satisfied: traitlets==5.14.3 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 162)) (5.14.3)
+Requirement already satisfied: transformers==4.40.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 163)) (4.40.1)
+Requirement already satisfied: ttach==0.0.3 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 164)) (0.0.3)
+Requirement already satisfied: typing_extensions==4.8.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 165)) (4.8.0)
+Collecting tzdata==2023.3 (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 166))
+  Using cached tzdata-2023.3-py2.py3-none-any.whl.metadata (1.4 kB)
+Requirement already satisfied: uri-template==1.3.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 167)) (1.3.0)
+Requirement already satisfied: urllib3==2.1.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 168)) (2.1.0)
+Requirement already satisfied: wcwidth==0.2.12 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 169)) (0.2.12)
+Requirement already satisfied: webcolors==24.11.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 170)) (24.11.1)
+Requirement already satisfied: webencodings==0.5.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 171)) (0.5.1)
+Requirement already satisfied: websocket-client==1.7.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 172)) (1.7.0)
+Requirement already satisfied: Werkzeug==3.0.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 173)) (3.0.1)
+Requirement already satisfied: widgetsnbextension==4.0.14 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 174)) (4.0.14)
+Requirement already satisfied: xxhash==3.4.1 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 175)) (3.4.1)
+Requirement already satisfied: yapf==0.40.2 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 176)) (0.40.2)
+Requirement already satisfied: yarl==1.9.4 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 177)) (1.9.4)
+Requirement already satisfied: zipp==3.17.0 in /home/caregnatog/.local/lib/python3.10/site-packages (from -r /home/caregnatog/VisionExplainability/requirements.txt (line 178)) (3.17.0)
+Requirement already satisfied: torch>=1.10 in /opt/conda/lib/python3.10/site-packages (from captum==0.8.0->-r /home/caregnatog/VisionExplainability/requirements.txt (line 17)) (2.3.1)
+Requirement already satisfied: torchvision>=0.8.2 in /opt/conda/lib/python3.10/site-packages (from grad-cam==1.5.5->-r /home/caregnatog/VisionExplainability/requirements.txt (line 46)) (0.18.1)
+Requirement already satisfied: opencv-python in /home/caregnatog/.local/lib/python3.10/site-packages (from grad-cam==1.5.5->-r /home/caregnatog/VisionExplainability/requirements.txt (line 46)) (4.8.1.78)
+Requirement already satisfied: setuptools>=41.1.0 in /opt/conda/lib/python3.10/site-packages (from jupyterlab==4.4.10->-r /home/caregnatog/VisionExplainability/requirements.txt (line 75)) (69.5.1)
+Using cached numpy-1.26.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.2 MB)
+Using cached contourpy-1.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (310 kB)
+Using cached fsspec-2023.6.0-py3-none-any.whl (163 kB)
+Using cached fonttools-4.46.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.6 MB)
+Using cached joblib-1.3.2-py3-none-any.whl (302 kB)
+Using cached kiwisolver-1.4.5-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.6 MB)
+Using cached matplotlib-3.8.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.6 MB)
+Downloading packaging-23.2-py3-none-any.whl (53 kB)
+Using cached pandas-2.1.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.3 MB)
+Using cached pytz-2023.3.post1-py2.py3-none-any.whl (502 kB)
+Using cached scikit_learn-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.8 MB)
+Using cached scipy-1.11.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (36.4 MB)
+Using cached opencv_python_headless-4.8.1.78-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (49.1 MB)
+Using cached Pillow-10.1.0-cp310-cp310-manylinux_2_28_x86_64.whl (3.6 MB)
+Using cached pyparsing-3.1.1-py3-none-any.whl (103 kB)
+Using cached python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+Using cached sympy-1.12-py3-none-any.whl (5.7 MB)
+Using cached threadpoolctl-3.2.0-py3-none-any.whl (15 kB)
+Using cached tqdm-4.66.1-py3-none-any.whl (78 kB)
+Using cached tzdata-2023.3-py2.py3-none-any.whl (341 kB)
+Installing collected packages: pytz, tzdata, tqdm, threadpoolctl, sympy, six, pyparsing, Pillow, packaging, numpy, kiwisolver, joblib, fsspec, fonttools, scipy, python-dateutil, opencv-python-headless, contourpy, scikit-learn, pandas, matplotlib
+  Attempting uninstall: pytz
+    Found existing installation: pytz 2025.2
+    Uninstalling pytz-2025.2:
+      Successfully uninstalled pytz-2025.2
+  Attempting uninstall: tzdata
+    Found existing installation: tzdata 2025.2
+    Uninstalling tzdata-2025.2:
+      Successfully uninstalled tzdata-2025.2
+  Attempting uninstall: tqdm
+    Found existing installation: tqdm 4.67.1
+    Uninstalling tqdm-4.67.1:
+      Successfully uninstalled tqdm-4.67.1
+  Attempting uninstall: threadpoolctl
+    Found existing installation: threadpoolctl 3.6.0
+    Uninstalling threadpoolctl-3.6.0:
+      Successfully uninstalled threadpoolctl-3.6.0
+  Attempting uninstall: sympy
+    Found existing installation: sympy 1.13.1
+    Uninstalling sympy-1.13.1:
+      Successfully uninstalled sympy-1.13.1
+  Attempting uninstall: six
+    Found existing installation: six 1.17.0
+    Uninstalling six-1.17.0:
+      Successfully uninstalled six-1.17.0
+  Attempting uninstall: pyparsing
+    Found existing installation: pyparsing 3.2.5
+    Uninstalling pyparsing-3.2.5:
+      Successfully uninstalled pyparsing-3.2.5
+  Attempting uninstall: Pillow
+    Found existing installation: Pillow 9.4.0
+    Uninstalling Pillow-9.4.0:
+      Successfully uninstalled Pillow-9.4.0
+  Attempting uninstall: packaging
+    Found existing installation: packaging 25.0
+    Uninstalling packaging-25.0:
+      Successfully uninstalled packaging-25.0
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.2.6
+    Uninstalling numpy-2.2.6:
+      Successfully uninstalled numpy-2.2.6
+  Attempting uninstall: kiwisolver
+    Found existing installation: kiwisolver 1.4.9
+    Uninstalling kiwisolver-1.4.9:
+      Successfully uninstalled kiwisolver-1.4.9
+  Attempting uninstall: joblib
+    Found existing installation: joblib 1.5.2
+    Uninstalling joblib-1.5.2:
+      Successfully uninstalled joblib-1.5.2
+  Attempting uninstall: fsspec
+    Found existing installation: fsspec 2025.10.0
+    Uninstalling fsspec-2025.10.0:
+      Successfully uninstalled fsspec-2025.10.0
+  Attempting uninstall: fonttools
+    Found existing installation: fonttools 4.60.1
+    Uninstalling fonttools-4.60.1:
+      Successfully uninstalled fonttools-4.60.1
+  Attempting uninstall: scipy
+    Found existing installation: scipy 1.15.3
+    Uninstalling scipy-1.15.3:
+      Successfully uninstalled scipy-1.15.3
+  Attempting uninstall: python-dateutil
+    Found existing installation: python-dateutil 2.9.0.post0
+    Uninstalling python-dateutil-2.9.0.post0:
+      Successfully uninstalled python-dateutil-2.9.0.post0
+  Attempting uninstall: opencv-python-headless
+    Found existing installation: opencv-python-headless 4.12.0.88
+    Uninstalling opencv-python-headless-4.12.0.88:
+      Successfully uninstalled opencv-python-headless-4.12.0.88
+  Attempting uninstall: contourpy
+    Found existing installation: contourpy 1.3.2
+    Uninstalling contourpy-1.3.2:
+      Successfully uninstalled contourpy-1.3.2
+  Attempting uninstall: scikit-learn
+    Found existing installation: scikit-learn 1.7.2
+    Uninstalling scikit-learn-1.7.2:
+      Successfully uninstalled scikit-learn-1.7.2
+  Attempting uninstall: pandas
+    Found existing installation: pandas 2.3.3
+    Uninstalling pandas-2.3.3:
+      Successfully uninstalled pandas-2.3.3
+  Attempting uninstall: matplotlib
+    Found existing installation: matplotlib 3.10.7
+    Uninstalling matplotlib-3.10.7:
+      Successfully uninstalled matplotlib-3.10.7
+
+Successfully installed Pillow-10.1.0 contourpy-1.2.0 fonttools-4.46.0 fsspec-2023.6.0 joblib-1.3.2 kiwisolver-1.4.5 matplotlib-3.8.2 numpy-1.26.2 opencv-python-headless-4.8.1.78 packaging-23.2 pandas-2.1.3 pyparsing-3.1.1 python-dateutil-2.8.2 pytz-2023.3.post1 scikit-learn-1.3.2 scipy-1.11.4 six-1.16.0 sympy-1.12 threadpoolctl-3.2.0 tqdm-4.66.1 tzdata-2023.3
+numpy OK: 1.26.2
+=> loading checkpoint './model_save/ResNet/ResNet50.pkl'
+=> loading checkpoint './model_save/ResNet/ResNet50.pkl'
+ResNet(
+  (base_model): ResNet(
+    (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU(inplace=True)
+    (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (layer1): Sequential(
+      (0): Bottleneck(
+        (conv1): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (downsample): Sequential(
+          (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): Bottleneck(
+        (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (2): Bottleneck(
+        (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (layer2): Sequential(
+      (0): Bottleneck(
+        (conv1): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (downsample): Sequential(
+          (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): Bottleneck(
+        (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (2): Bottleneck(
+        (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (3): Bottleneck(
+        (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (layer3): Sequential(
+      (0): Bottleneck(
+        (conv1): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (downsample): Sequential(
+          (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (2): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (3): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (4): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (5): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (layer4): Sequential(
+      (0): Bottleneck(
+        (conv1): Conv2d(1024, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (downsample): Sequential(
+          (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+      )
+      (1): Bottleneck(
+        (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+      (2): Bottleneck(
+        (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+    (fc): Linear(in_features=2048, out_features=200, bias=True)
+  )
+)
+cuda:0
+TEST DATASET

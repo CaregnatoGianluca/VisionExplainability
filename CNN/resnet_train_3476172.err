@@ -1,0 +1,35 @@
++ set -e
++ cd /home/caregnatog/VisionExplainability/CNN
++ IMG=docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-runtime
++ REQ=/home/caregnatog/VisionExplainability/requirements.txt
+++ date
++ echo 'Job started at: Fri Nov 14 08:34:36 CET 2025'
+++ hostname
++ echo 'Running on host: gpu5.dei.unipd.it'
++ srun singularity exec --nv docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-runtime bash -lc 'python3 -m pip install --user --upgrade pip && python3 -m pip install --user -r '\''/home/caregnatog/VisionExplainability/requirements.txt'\'''
+INFO:    Using cached SIF image
+  WARNING: The script tqdm is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script isympy is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script f2py is installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts fonttools, pyftmerge, pyftsubset and ttx are installed in '/home/caregnatog/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
++ srun singularity exec --nv docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-runtime bash -lc 'python3 -c '\''import numpy, pytorch_grad_cam; print("numpy OK:", numpy.__version__)'\'''
+INFO:    Using cached SIF image
++ srun singularity exec --nv docker://pytorch/pytorch:2.3.1-cuda11.8-cudnn8-runtime bash -lc 'python3 /home/caregnatog/VisionExplainability/CNN/explainability.py'
+INFO:    Using cached SIF image
+/opt/conda/lib/python3.10/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/opt/conda/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Traceback (most recent call last):
+  File "/home/caregnatog/VisionExplainability/CNN/explainability.py", line 202, in <module>
+    test_data = cub200(path['data'], train=False, transform=transforms.Compose(transform_list))
+  File "/home/caregnatog/VisionExplainability/DatasetLoader/cub_v2.py", line 19, in __init__
+    if self._check_processed():
+  File "/home/caregnatog/VisionExplainability/DatasetLoader/cub_v2.py", line 48, in _check_processed
+    assert os.path.isfile(os.path.join(self.root, 'CUB_200_2011.tgz')) == True
+AssertionError
+srun: error: gpu5: task 0: Exited with exit code 1
