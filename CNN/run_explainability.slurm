@@ -28,6 +28,6 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 srun singularity exec --nv /nfsd/opt/sif-images/cv-ml-torch.sif \
     bash -lc "source $HOME/venvs/gradcam_env/bin/activate && \
               cd $HOME/VisionExplainability/CNN && \
-              python ResNet_training.py"
+              python explainability.py"
 
 echo "Job finished at: $(date)"
