@@ -1,8 +1,0 @@
-numpy<2
-torch
-torchvision
-opencv-python-headless
-grad-cam
-ttach
-scikit-learn
-tqdm

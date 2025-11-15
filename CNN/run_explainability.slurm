@@ -1,44 +1,33 @@
 #!/bin/bash -l
 
-#SBATCH --job-name resnet_train
+#SBATCH --job-name=resnet_train
+#SBATCH --output=resnet_train_%j.out
+#SBATCH --error=resnet_train_%j.err
 
-#SBATCH --output resnet_train_%j.out
-#SBATCH --error resnet_train_%j.err
-
-#SBATCH --mail-user gianluca.caregnato@studenti.unipd.it
-#SBATCH --mail-type BEGIN,END,FAIL
-
-#SBATCH --time 08:00:00
-
-#SBATCH --partition allgroups
-
-# --- GPU Configuration ---
+#SBATCH --time=08:00:00
+#SBATCH --partition=allgroups
 #SBATCH --gres=gpu:a40:1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
 
-# --- CPU/Memory Configuration ---
-#SBATCH --ntasks 1
-#SBATCH --cpus-per-task 8
-#SBATCH --mem 32G
+set -x
 
-set -x  # print commands as they run
+cd "$HOME/VisionExplainability/CNN"
 
-# 1) Go to the repo (fix the spelling of the folder name!)
-cd $HOME/VisionExplainability/CNN
+# Scratch directory on /ext
+SCRATCH=/ext/$USER/$SLURM_JOB_ID
+mkdir -p "$SCRATCH"
+export TMPDIR="$SCRATCH"
+export TMP="$SCRATCH"
+export TEMP="$SCRATCH"
+echo "Scratch dir: $SCRATCH"
 
-echo "Job started at: $(date)"
-echo "Running on host: $(hostname)"
-echo "Node list: $SLURM_NODELIST"
-echo "Job ID: $SLURM_JOB_ID"
-echo "PATH: $PATH"
-
-# Optional: match OpenMP threads to SLURM CPUs
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
-# 2) Use YOUR SIF instead of the shared tensorflow image
-#    Adjust the path to gradcam.sif if you stored it elsewhere.
-srun singularity exec --nv $HOME/sif/gradcam.sif \
-     python ResNet_training.py
+srun singularity exec --nv /nfsd/opt/sif-images/cv-ml-torch.sif \
+    bash -lc "source $HOME/venvs/gradcam_env/bin/activate && \
+              cd $HOME/VisionExplainability/CNN && \
+              python ResNet_training.py"
 
 echo "Job finished at: $(date)"
-echo "SLURM Job ID: $SLURM_JOB_ID"
-echo "Running on hosts: $SLURM_NODELIST"
