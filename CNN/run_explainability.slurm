@@ -16,21 +16,14 @@
 #SBATCH --gres=gpu:a40:1
 
 # --- CPU/Memory Configuration ---
-# Number of tasks. For a single GPU job, you typically only need 1 task.
-# The training is not intrinsically multi-threaded/distributed here.
 #SBATCH --ntasks 1
-
-# Number of CPUs per task. Use this to allocate CPU cores for data loading/preprocessing.
-# Your code uses DATASET_WORK_NUMBER = 8, so requesting 8 CPUs is appropriate.
 #SBATCH --cpus-per-task 8
-
 #SBATCH --mem 32G
-
-# --- Execute Commands ---
 
 set -x  # print commands as they run
 
-cd $HOME/VisionExplanability/CNN
+# 1) Go to the repo (fix the spelling of the folder name!)
+cd $HOME/VisionExplainability/CNN
 
 echo "Job started at: $(date)"
 echo "Running on host: $(hostname)"
@@ -38,9 +31,14 @@ echo "Node list: $SLURM_NODELIST"
 echo "Job ID: $SLURM_JOB_ID"
 echo "PATH: $PATH"
 
-srun singularity exec --nv /nfsd/opt/sif-images/tensorflow_latest-gpu-new.sif python ResNet_training.py
+# Optional: match OpenMP threads to SLURM CPUs
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
-# Optional: Print out the final allocation for verification
+# 2) Use YOUR SIF instead of the shared tensorflow image
+#    Adjust the path to gradcam.sif if you stored it elsewhere.
+srun singularity exec --nv $HOME/sif/gradcam.sif \
+     python ResNet_training.py
+
 echo "Job finished at: $(date)"
 echo "SLURM Job ID: $SLURM_JOB_ID"
 echo "Running on hosts: $SLURM_NODELIST"
