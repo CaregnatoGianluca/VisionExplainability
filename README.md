@@ -20,33 +20,33 @@ Our results reveal distinct attention dynamics: CNNs tend to exhibit a more glob
 We further analyze the effect of backbone freezing and ensemble strategies on model interpretability. The results highlight how architectural and training choices influence the alignment between model saliency and human visual attention.
 
 ## Installation
-
+Follow these commands to avoid modules compatibility issues:
+#### clone the repository
+```
 git clone --recurse-submodules https://github.com/CaregnatoGianluca/VisionExplainability.git
 cd VisionExplainability
-
-#### 0. create the conda environment
+```
+#### create the conda environment
+```
 conda create -n XAI python=3.10 -y
 conda activate XAI
-#### Install PyTorch Runtime
+```
+#### install PyTorch
+```
 conda install pytorch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 pytorch-cuda=11.8 -c pytorch -c nvidia -y
-
-#### Install Matching Compiler & Headers
 conda install cuda-nvcc=11.8 cuda-cudart-dev=11.8 cuda-libraries-dev=11.8 cuda-cccl=11.8 gxx_linux-64=11 -c nvidia -y
-
 export CUDA_HOME=$CONDA_PREFIX
 export PATH=$CONDA_PREFIX/bin:$PATH
 export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
-
-#### Install all the dependencies
+```
+#### install all the dependencies
+```
 pip install setuptools==69.5.1
 pip install -r requirements.txt --no-build-isolation
-
-#### Install MambaLRP ensuring no conflicts
 cd external/MambaLRP
 pip install -e . --no-deps
 cd ../../
-
-
+```
 Please notice that Vision Mamba uses a different mamba-ssm module, called mamba-1p1p1, as well as a different causal-conv1d module.
 
 ## Structure
