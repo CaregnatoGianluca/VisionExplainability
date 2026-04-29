@@ -1,0 +1,31 @@
+# --- CORE ENGINES ---
+numpy<2
+ninja
+packaging
+
+# --- CUSTOM SUBMODULES ---
+./external/Vim/causal-conv1d
+./external/Vim/mamba-1p1p1
+
+# --- FIXING THE CONFLICTS ---
+captum==0.7.0
+opencv-python==4.8.0.76
+grad-cam
+timm==0.9.12
+transformers==4.40.1
+datasets==2.14.5
+peft==0.10.0
+
+# --- REMAINING DEPS ---
+addict
+einops
+tqdm
+scipy
+matplotlib
+scikit-learn
+scikit-image
+pyyaml
+rope
+ipykernel
+
+mmcv==2.1.0
