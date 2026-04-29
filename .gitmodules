@@ -1,0 +1,6 @@
+[submodule "external/Vim"]
+	path = external/Vim
+	url = https://github.com/hustvl/Vim.git
+[submodule "external/MambaLRP"]
+	path = external/MambaLRP
+	url = https://github.com/FarnoushRJ/MambaLRP.git
