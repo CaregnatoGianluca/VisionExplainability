@@ -52,7 +52,7 @@ Please notice that Vision Mamba uses a different mamba-ssm module, called mamba-
 ## Data Preparation & Reproducibility
 To easily retrieve all required model checkpoints, datasets, and pre-generated heatmaps, simply open and run `download_data.ipynb`. This notebook automatically downloads and extracts all necessary assets from Google Drive directly into the `drive_folder` directory. 
 
-Once the data is downloaded, you can run the evaluation, explainability, and comparison notebooks. These notebooks are configured to automatically load the downloaded assets, allowing you to effortlessly reproduce the paper's exact results.
+Once the data is downloaded, you can run the evaluation, explainability, and comparison notebooks. These notebooks are configured to automatically load the downloaded assets, allowing to reproduce the paper's exact results.
 
 ## Structure
 *NetworkManager* is the core of the project: it encapsulates every model/architecture in a unified interface.
