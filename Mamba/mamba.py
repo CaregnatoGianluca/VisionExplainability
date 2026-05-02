@@ -38,9 +38,7 @@ def load_model_from_checkpoint(checkpoint_path: str, model_type: str, n_class: i
     '''
     model = model_types.get(model_type)(pretrained=False, img_size=img_size)
 
-    torch.serialization.add_safe_globals([argparse.Namespace])
-
-    checkpoint = torch.load(checkpoint_path)
+    checkpoint = torch.load(checkpoint_path, weights_only=False)
 
     if checkpoint.get('model'):
         checkpoint_model = checkpoint['model']

@@ -11,8 +11,8 @@ from torchvision.transforms import functional as F
 
 dataset_options = {
     'name': 'CUB_200_2011',
-    'data_root': '../CUB/DATASET/',
-    'gaze_map_dir': '../CUB/GAZE_DATASET/CUB_GHA',
+    'data_root': '../drive_folder/Bridging Human and Model Attention_ Explainability Analysis of CNN, Mamba, and ViT Architectures with Gaze-Based Validation/CUB/DATASET',
+    'gaze_map_dir': '../drive_folder/Bridging Human and Model Attention_ Explainability Analysis of CNN, Mamba, and ViT Architectures with Gaze-Based Validation/CUB/GAZE_DATASET/CUB_GHA',
     'n_class': 200
 }
 
@@ -146,12 +146,12 @@ class cub200(torch.utils.data.Dataset):
         self.train = train
         self.transform = transform
 
-
+        '''
         if self._check_processed():
             print('Train file has been extracted' if self.train else 'Test file has been extracted')
         else:
             self._extract()
-
+        '''
         if self.train:
             self.train_data, self.train_label = pickle.load(
                 open(os.path.join(self.root, 'processed/train.pkl'), 'rb')
@@ -160,6 +160,7 @@ class cub200(torch.utils.data.Dataset):
             self.test_data, self.test_label = pickle.load(
                 open(os.path.join(self.root, 'processed/test.pkl'), 'rb')
             )
+        
 
     def __len__(self):
         return len(self.train_data) if self.train else len(self.test_data)
@@ -176,7 +177,6 @@ class cub200(torch.utils.data.Dataset):
 
     def _check_processed(self):
         assert os.path.isdir(self.root) == True
-        assert os.path.isfile(os.path.join(self.root, 'CUB_200_2011.tgz')) == True
         return (os.path.isfile(os.path.join(self.root, 'processed/train.pkl')) and
                 os.path.isfile(os.path.join(self.root, 'processed/test.pkl')))
 
