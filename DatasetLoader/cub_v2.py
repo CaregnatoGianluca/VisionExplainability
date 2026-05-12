@@ -11,8 +11,8 @@ from torchvision.transforms import functional as F
 
 dataset_options = {
     'name': 'CUB_200_2011',
-    'data_root': '../drive_folder/Bridging Human and Model Attention_ Explainability Analysis of CNN, Mamba, and ViT Architectures with Gaze-Based Validation/CUB/DATASET',
-    'gaze_map_dir': '../drive_folder/Bridging Human and Model Attention_ Explainability Analysis of CNN, Mamba, and ViT Architectures with Gaze-Based Validation/CUB/GAZE_DATASET/CUB_GHA',
+    'data_root': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/CUB/DATASET',
+    'gaze_map_dir': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/CUB/GAZE_DATASET/CUB_GHA',
     'n_class': 200
 }
 
