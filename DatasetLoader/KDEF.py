@@ -9,14 +9,13 @@ from sklearn.model_selection import train_test_split
 
 dataset_options = {
     'name': 'KDEF',
-    'root_dir': 'path/alla/tua/cartella/KDEF',
+    'root_dir': '../drive_folder/Bridging Human and Model Attention_ Explainability Analysis of CNN, Mamba, and ViT Architectures with Gaze-Based Validation/KDEF/',
     'img_size': 224,
     'batch_size': 32,
     'num_workers': 4,
-    'n_class': 3
+    'n_class': 7
 }
 
-# --- 2. HELPER FUNCTIONS (dal loader CXR) ---
 def pad_to_square(img, fill=0):
     '''
     Pad image to make it square
@@ -43,24 +42,10 @@ def pad_to_square(img, fill=0):
 
 
 class KDEFDataset(Dataset):
-    def __init__(self, root_dir, subject_list, transform=None):
-        self.root_dir = root_dir
+    def __init__(self, image_paths, labels, transform=None):
+        self.image_paths = image_paths
+        self.labels = labels
         self.transform = transform
-        self.image_paths = []
-        self.labels = []
-        self.emotion_to_idx = {'HA': 0, 'SA': 1, 'NE': 2}
-
-        for subj in subject_list:
-            subj_path = os.path.join(root_dir, subj)
-            if not os.path.isdir(subj_path):
-                continue
-            
-            for filename in os.listdir(subj_path):
-                if filename.endswith(".JPG"):
-                    emotion_code = filename[4:6]
-                    if emotion_code in self.emotion_to_idx:
-                        self.image_paths.append(os.path.join(subj_path, filename))
-                        self.labels.append(self.emotion_to_idx[emotion_code])
 
     def __len__(self):
         return len(self.image_paths)
@@ -79,8 +64,28 @@ def get_kdef_dataloaders(options):
     batch_size = options['batch_size']
     num_workers = options['num_workers']
 
-    all_subjects = sorted([d for d in os.listdir(root_path) if os.path.isdir(os.path.join(root_path, d))])
-    train_subjects, test_subjects = train_test_split(all_subjects, test_size=0.2, random_state=42)
+    all_image_paths = []
+    all_labels = []
+    emotion_to_idx = {'HA': 0, 'SA': 1, 'NE': 2, 'AF': 3, 'SU': 4, 'DI': 5, 'AN': 6}
+
+    subjects = sorted([d for d in os.listdir(root_path) if os.path.isdir(os.path.join(root_path, d))])
+    
+    for subj in subjects:
+        subj_path = os.path.join(root_path, subj)
+        for filename in os.listdir(subj_path):
+            if filename.endswith(".JPG"):
+                emotion_code = filename[4:6]
+                if emotion_code in emotion_to_idx:
+                    all_image_paths.append(os.path.join(subj_path, filename))
+                    all_labels.append(emotion_to_idx[emotion_code])
+
+    train_paths, test_paths, train_labels, test_labels = train_test_split(
+        all_image_paths, 
+        all_labels, 
+        test_size=0.2, 
+        random_state=42,
+        stratify=all_labels
+    )
 
     data_transforms = {
         'train': transforms.Compose([
@@ -100,26 +105,14 @@ def get_kdef_dataloaders(options):
         ]),
     }
 
-    # Creazione Dataset
-    train_dataset = KDEFDataset(root_path, train_subjects, transform=data_transforms['train'])
-    test_dataset = KDEFDataset(root_path, test_subjects, transform=data_transforms['test'])
+    train_dataset = KDEFDataset(train_paths, train_labels, transform=data_transforms['train'])
+    test_dataset = KDEFDataset(test_paths, test_labels, transform=data_transforms['test'])
 
-    # Creazione DataLoader con impostazioni avanzate
-    train_loader = DataLoader(
-        train_dataset, 
-        batch_size=batch_size, 
-        shuffle=True, 
-        pin_memory=True, 
-        num_workers=num_workers
-    )
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, 
+                              pin_memory=True, num_workers=num_workers)
     
-    test_loader = DataLoader(
-        test_dataset, 
-        batch_size=batch_size, 
-        shuffle=False, 
-        pin_memory=True, 
-        num_workers=num_workers
-    )
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, 
+                             pin_memory=True, num_workers=num_workers)
 
     return train_loader, test_loader
 
