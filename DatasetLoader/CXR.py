@@ -14,7 +14,7 @@ from torchvision.transforms import functional as F
 
 dataset_options = {
     'name': 'CXR',
-    'data_root': '../drive_folder/Bridging Human and Model Attention_ Explainability Analysis of CNN, Mamba, and ViT Architectures with Gaze-Based Validation/CXR/',
+    'data_root': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/CXR/',
     'n_class': 3
 }
 

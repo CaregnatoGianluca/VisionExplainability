@@ -9,8 +9,8 @@ from sklearn.model_selection import train_test_split
 
 dataset_options = {
     'name': 'KDEF',
-    'root_dir': '../drive_folder/Bridging Human and Model Attention_ Explainability Analysis of CNN, Mamba, and ViT Architectures with Gaze-Based Validation/KDEF/',
-    'img_size': 224,
+    'root_dir': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/KDEF/',
+    'img_size': 448,
     'batch_size': 32,
     'num_workers': 4,
     'n_class': 7
@@ -56,9 +56,9 @@ class KDEFDataset(Dataset):
         label = self.labels[idx]
         if self.transform:
             image = self.transform(image)
-        return image, label
+        return image, label, idx
 
-def get_kdef_dataloaders(options):
+def get_dataloaders(options):
     root_path = options['root_dir']
     img_size = options['img_size']
     batch_size = options['batch_size']
