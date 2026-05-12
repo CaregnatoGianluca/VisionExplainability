@@ -55,7 +55,7 @@ class KDEFDataset(Dataset):
             image = self.transform(image)
         return image, label, idx
 
-def get_dataloaders(batchsize, data_dir = '../KDEF', img_size=448, num_workers=0, gaze_dir = "../KDEF_gaze"):
+def get_dataloaders(batchsize, data_dir = '../KDEF', img_size=448, num_workers=0, gaze_dir = "../karolinska"):
     root_path = data_dir
     img_size = img_size
     batch_size = batchsize
