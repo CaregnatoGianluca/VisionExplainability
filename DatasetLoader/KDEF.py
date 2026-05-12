@@ -10,9 +10,6 @@ from sklearn.model_selection import train_test_split
 dataset_options = {
     'name': 'KDEF',
     'root_dir': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/KDEF/',
-    'img_size': 448,
-    'batch_size': 32,
-    'num_workers': 4,
     'n_class': 7
 }
 
@@ -58,11 +55,11 @@ class KDEFDataset(Dataset):
             image = self.transform(image)
         return image, label, idx
 
-def get_dataloaders(options):
-    root_path = options['root_dir']
-    img_size = options['img_size']
-    batch_size = options['batch_size']
-    num_workers = options['num_workers']
+def get_dataloaders(batchsize, data_dir = '../KDEF', img_size=448, num_workers=0, gaze_dir = "../KDEF_gaze"):
+    root_path = data_dir
+    img_size = img_size
+    batch_size = batchsize
+    num_workers = num_workers
 
     all_image_paths = []
     all_labels = []
@@ -79,13 +76,53 @@ def get_dataloaders(options):
                     all_image_paths.append(os.path.join(subj_path, filename))
                     all_labels.append(emotion_to_idx[emotion_code])
 
-    train_paths, test_paths, train_labels, test_labels = train_test_split(
-        all_image_paths, 
-        all_labels, 
-        test_size=0.2, 
-        random_state=42,
-        stratify=all_labels
-    )
+    gaze_filenames = set()
+    if os.path.exists(gaze_dir):
+        for root, _, files in os.walk(gaze_dir):
+            for f in files:
+                gaze_filenames.add(f)
+
+    if gaze_filenames:
+        gaze_paths, gaze_labels = [], []
+        other_paths, other_labels = [], []
+        
+        for path, label in zip(all_image_paths, all_labels):
+            if os.path.basename(path) in gaze_filenames:
+                gaze_paths.append(path)
+                gaze_labels.append(label)
+            else:
+                other_paths.append(path)
+                other_labels.append(label)
+                
+        target_test_size = int(len(all_image_paths) * 0.2)
+        remaining_test_size = target_test_size - len(gaze_paths)
+        
+        if 0 < remaining_test_size < len(other_paths):
+            try:
+                train_paths, add_test_paths, train_labels, add_test_labels = train_test_split(
+                    other_paths, other_labels, test_size=remaining_test_size, 
+                    random_state=42, stratify=other_labels
+                )
+            except ValueError:
+                train_paths, add_test_paths, train_labels, add_test_labels = train_test_split(
+                    other_paths, other_labels, test_size=remaining_test_size, 
+                    random_state=42
+                )
+            test_paths = gaze_paths + add_test_paths
+            test_labels = gaze_labels + add_test_labels
+        else:
+            train_paths = other_paths
+            train_labels = other_labels
+            test_paths = gaze_paths
+            test_labels = gaze_labels
+    else:
+        train_paths, test_paths, train_labels, test_labels = train_test_split(
+            all_image_paths, 
+            all_labels, 
+            test_size=0.2, 
+            random_state=42,
+            stratify=all_labels
+        )
 
     data_transforms = {
         'train': transforms.Compose([
