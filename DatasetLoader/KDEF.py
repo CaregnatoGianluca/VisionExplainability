@@ -9,10 +9,10 @@ from sklearn.model_selection import train_test_split
 
 dataset_options = {
     'name': 'KDEF',
-    'root_dir': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/KDEF/',
+    'root_dir': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/KDEF/dataset/',
     'n_class': 7,
     'gaze_dir': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/KDEF/karolinska',
-    'heatmap_dir': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/KDEF/gaze_heatmaps',
+    'heatmap_dir': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/KDEF/DensityByExpressionAndImage_GPU_sigma20',
 }
 
 def pad_to_square(img, fill=0):
@@ -197,8 +197,12 @@ def get_gaze_image(original_image_name, images_dir, heatmap_dir):
         gaze_img: PIL Image of gaze heatmap
     '''    
     image_files = sorted([f for f in os.listdir(images_dir) if f.endswith(".JPG")])
+
+    print(f"Looking for original image {original_image_name} in {images_dir}...")
+    print(f"Hitting gaze heatmap directory: {heatmap_dir}...")
     
     if original_image_name not in image_files:
+        print (f"Original image {original_image_name} not found in {images_dir}. Cannot load gaze heatmap.")
         return None
         
     index = image_files.index(original_image_name)
