@@ -206,7 +206,10 @@ def get_gaze_image(original_image_name, images_dir, heatmap_dir):
         return None
         
     index = image_files.index(original_image_name)
-    
+    emotion_code = original_image_name[4:6]
+
+    heatmap_dir = heatmap_dir + '/' + emotion_code
+
     if os.path.exists(heatmap_dir):
         npy_files = sorted([f for f in os.listdir(heatmap_dir) if f.endswith(".npy")])
         if index < len(npy_files):
