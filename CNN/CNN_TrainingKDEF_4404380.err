@@ -1,0 +1,39 @@
++ SCRATCH=/ext/caregnatog/4404380
++ mkdir -p /ext/caregnatog/4404380
++ export TMPDIR=/ext/caregnatog/4404380
++ TMPDIR=/ext/caregnatog/4404380
++ export TMP=/ext/caregnatog/4404380
++ TMP=/ext/caregnatog/4404380
++ export TEMP=/ext/caregnatog/4404380
++ TEMP=/ext/caregnatog/4404380
++ export OMP_NUM_THREADS=6
++ OMP_NUM_THREADS=6
++ singularity exec -B /nfsd --nv /nfsd/opt/sif-images/tensorflow_latest-gpu-new.sif bash -lc '
+  source /nfsd/nannidl/caregnatog/venvs/mamba/bin/activate &&
+  cd /nfsd/nannidl/caregnatog/VisionExplainability/CNN &&
+  python training.py
+'
+/nfsd/nannidl/caregnatog/venvs/mamba/lib/python3.11/site-packages/timm/models/registry.py:4: FutureWarning: Importing from timm.models.registry is deprecated, please import via timm.models
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.models", FutureWarning)
+/nfsd/nannidl/caregnatog/venvs/mamba/lib/python3.11/site-packages/timm/models/layers/__init__.py:48: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/nfsd/nannidl/caregnatog/Vim/mamba-1p1p1/mamba_ssm/ops/selective_scan_interface.py:163: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd
+/nfsd/nannidl/caregnatog/Vim/mamba-1p1p1/mamba_ssm/ops/selective_scan_interface.py:232: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @custom_bwd
+/nfsd/nannidl/caregnatog/Vim/mamba-1p1p1/mamba_ssm/ops/selective_scan_interface.py:300: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd
+/nfsd/nannidl/caregnatog/Vim/mamba-1p1p1/mamba_ssm/ops/selective_scan_interface.py:376: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @custom_bwd
+/nfsd/nannidl/caregnatog/Vim/mamba-1p1p1/mamba_ssm/ops/selective_scan_interface.py:451: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd
+/nfsd/nannidl/caregnatog/Vim/mamba-1p1p1/mamba_ssm/ops/selective_scan_interface.py:531: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @custom_bwd
+/nfsd/nannidl/caregnatog/Vim/mamba-1p1p1/mamba_ssm/ops/triton/layer_norm.py:985: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd
+/nfsd/nannidl/caregnatog/Vim/mamba-1p1p1/mamba_ssm/ops/triton/layer_norm.py:1044: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @custom_bwd
+/nfsd/nannidl/caregnatog/venvs/mamba/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/nfsd/nannidl/caregnatog/venvs/mamba/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet50_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet50_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
