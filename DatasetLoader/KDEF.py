@@ -10,7 +10,9 @@ from sklearn.model_selection import train_test_split
 dataset_options = {
     'name': 'KDEF',
     'root_dir': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/KDEF/',
-    'n_class': 7
+    'n_class': 7,
+    'gaze_dir': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/KDEF/karolinska',
+    'heatmap_dir': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/KDEF/gaze_heatmaps',
 }
 
 def pad_to_square(img, fill=0):
@@ -153,25 +155,57 @@ def get_dataloaders(batchsize, data_dir = '../KDEF', img_size=448, num_workers=0
 
     return train_loader, test_loader
 
-def get_gaze_image(image_id, emotion, data_dir='.'):
+def get_gaze_data_loader(batchsize, data_dir = '../karolinska', img_size=448, num_workers=0):
+    all_image_paths = []
+    all_labels = []
+    emotion_to_idx = {'HA': 0, 'SA': 1, 'NE': 2, 'AF': 3, 'SU': 4, 'DI': 5, 'AN': 6}
+
+    for filename in sorted(os.listdir(data_dir)):
+        if filename.endswith(".JPG"):
+            emotion_code = filename[4:6]
+            if emotion_code in emotion_to_idx:
+                all_image_paths.append(os.path.join(data_dir, filename))
+                all_labels.append(emotion_to_idx[emotion_code])
+
+    data_transform = transforms.Compose([
+        transforms.Lambda(lambda img: pad_to_square(img)), 
+        transforms.Resize(int(img_size / 0.875)),
+        transforms.CenterCrop(img_size),
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    ])
+
+    dataset = KDEFDataset(all_image_paths, all_labels, transform=data_transform)
+    loader = DataLoader(dataset, batch_size=batchsize, shuffle=False, 
+                        pin_memory=True, num_workers=num_workers)
+
+    return loader
+
+def get_gaze_image(original_image_name, images_dir, heatmap_dir):
     '''
-    Get KDEF gaze heatmap image
+    Get gaze heatmap image
     Args:
-        image_id: image id
-        emotion: emotion type
-        data_dir: root directory of KDEF dataset
+        original_image_name: original image filename
+        images_dir: directory containing the original images
     Returns:
         gaze_img: PIL Image of gaze heatmap
-    '''
-    filename = f"density_{emotion}_image_{image_id}.npy"
-    gaze_path = os.path.join(data_dir, emotion, filename)
-
-    if os.path.exists(gaze_path):
-        data = np.load(gaze_path)       
-        if data.max() - data.min() != 0:
-            data = (data - data.min()) / (data.max() - data.min()) * 255
-        else:
-            data = data * 0         
-        return Image.fromarray(data.astype(np.uint8)).convert("L")
+    '''    
+    image_files = sorted([f for f in os.listdir(images_dir) if f.endswith(".JPG")])
+    
+    if original_image_name not in image_files:
+        return None
+        
+    index = image_files.index(original_image_name)
+    
+    if os.path.exists(heatmap_dir):
+        npy_files = sorted([f for f in os.listdir(heatmap_dir) if f.endswith(".npy")])
+        if index < len(npy_files):
+            gaze_path = os.path.join(heatmap_dir, npy_files[index])
+            data = np.load(gaze_path)       
+            if data.max() - data.min() != 0:
+                data = (data - data.min()) / (data.max() - data.min()) * 255
+            else:
+                data = data * 0         
+            return Image.fromarray(data.astype(np.uint8)).convert("L")
     
     return None
