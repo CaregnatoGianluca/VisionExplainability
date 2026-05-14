@@ -58,7 +58,9 @@ elif DATASET == "cub":
                                              gaze_map_dir=cub_dataset_options['gaze_map_dir'])
     dataset_options = cub_dataset_options
 elif DATASET == "kdef":
-    train_loader, test_loader = kdef.get_dataloaders(kdef_dataset_options)
+    train_loader, test_loader = kdef.get_dataloaders(DEFAULT_BATCH_SIZE,
+                                             data_dir=kdef_dataset_options['root_dir'],
+                                             gaze_dir=kdef_dataset_options['gaze_dir'])
     dataset_options = kdef_dataset_options
 
 print("OPTIONS VALUES")

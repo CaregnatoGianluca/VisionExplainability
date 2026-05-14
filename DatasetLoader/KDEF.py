@@ -80,11 +80,13 @@ def get_dataloaders(batchsize, data_dir = '../KDEF', img_size=448, num_workers=0
 
     gaze_filenames = set()
     if os.path.exists(gaze_dir):
+        print(f"Looking for gaze heatmaps in {gaze_dir}...")
         for root, _, files in os.walk(gaze_dir):
             for f in files:
                 gaze_filenames.add(f)
 
     if gaze_filenames:
+        print(f"Found {len(gaze_filenames)} gaze heatmaps. Ensuring they are in the test set.")
         gaze_paths, gaze_labels = [], []
         other_paths, other_labels = [], []
         
@@ -105,7 +107,9 @@ def get_dataloaders(batchsize, data_dir = '../KDEF', img_size=448, num_workers=0
                     other_paths, other_labels, test_size=remaining_test_size, 
                     random_state=42, stratify=other_labels
                 )
+                print(f"Stratified split successful. Added {len(add_test_paths)} non-gaze samples to test set.")
             except ValueError:
+                print("Stratified split failed due to insufficient samples in some classes. Performing non-stratified split.")
                 train_paths, add_test_paths, train_labels, add_test_labels = train_test_split(
                     other_paths, other_labels, test_size=remaining_test_size, 
                     random_state=42
@@ -146,7 +150,9 @@ def get_dataloaders(batchsize, data_dir = '../KDEF', img_size=448, num_workers=0
 
     train_dataset = KDEFDataset(train_paths, train_labels, transform=data_transforms['train'])
     test_dataset = KDEFDataset(test_paths, test_labels, transform=data_transforms['test'])
-
+    print(batch_size)
+    print(train_dataset.__len__())
+    print(train_paths)
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, 
                               pin_memory=True, num_workers=num_workers)
     
