@@ -161,15 +161,23 @@ def get_dataloaders(batchsize, data_dir = '../KDEF', img_size=448, num_workers=0
 
     return train_loader, test_loader
 
-def get_gaze_data_loader(batchsize, data_dir = '../karolinska', img_size=448, num_workers=0):
+def get_gaze_data_loader(batchsize, data_dir = '../karolinska', img_size=448, num_workers=0, heatmap_dir = "../DensityByExpressionAndImage_GPU_sigma20"):
     all_image_paths = []
     all_labels = []
     emotion_to_idx = {'HA': 0, 'SA': 1, 'NE': 2, 'AF': 3, 'SU': 4, 'DI': 5, 'AN': 6}
 
+    available_codes = set()
+    if os.path.isdir(heatmap_dir):
+        available_codes = {d for d in os.listdir(heatmap_dir) if os.path.isdir(os.path.join(heatmap_dir, d))}
+        print(f"Available gaze heatmap expressions: {sorted(available_codes)}")
+    else:
+        print(f"Warning: heatmap_dir does not exist: {heatmap_dir}. Loading all gaze images.")
+        available_codes = set(emotion_to_idx.keys())
+
     for filename in sorted(os.listdir(data_dir)):
         if filename.endswith(".JPG"):
             emotion_code = filename[4:6]
-            if emotion_code in emotion_to_idx:
+            if emotion_code in emotion_to_idx and emotion_code in available_codes:
                 all_image_paths.append(os.path.join(data_dir, filename))
                 all_labels.append(emotion_to_idx[emotion_code])
 
@@ -196,7 +204,8 @@ def get_gaze_image(original_image_name, images_dir, heatmap_dir):
     Returns:
         gaze_img: PIL Image of gaze heatmap
     '''    
-    image_files = sorted([f for f in os.listdir(images_dir) if f.endswith(".JPG")])
+    emotion_code = original_image_name[4:6]
+    image_files = sorted([f for f in os.listdir(images_dir) if f.endswith(".JPG") and f[4:6] == emotion_code])
 
     print(f"Looking for original image {original_image_name} in {images_dir}...")
     print(f"Hitting gaze heatmap directory: {heatmap_dir}...")
@@ -204,21 +213,19 @@ def get_gaze_image(original_image_name, images_dir, heatmap_dir):
     if original_image_name not in image_files:
         print (f"Original image {original_image_name} not found in {images_dir}. Cannot load gaze heatmap.")
         return None
-        
-    index = image_files.index(original_image_name)
-    emotion_code = original_image_name[4:6]
 
-    heatmap_dir = heatmap_dir + '/' + emotion_code
+    index = image_files.index(original_image_name)
+    heatmap_dir = os.path.join(heatmap_dir, emotion_code)
 
     if os.path.exists(heatmap_dir):
         npy_files = sorted([f for f in os.listdir(heatmap_dir) if f.endswith(".npy")])
         if index < len(npy_files):
             gaze_path = os.path.join(heatmap_dir, npy_files[index])
-            data = np.load(gaze_path)       
+            data = np.load(gaze_path)
             if data.max() - data.min() != 0:
                 data = (data - data.min()) / (data.max() - data.min()) * 255
             else:
-                data = data * 0         
+                data = data * 0
             return Image.fromarray(data.astype(np.uint8)).convert("L")
     
     return None

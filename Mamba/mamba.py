@@ -48,7 +48,18 @@ def load_model_from_checkpoint(checkpoint_path: str, model_type: str, n_class: i
         checkpoint_model = {k.replace("module.", ""): v for k, v in checkpoint_model.items()}
     
     # interpolate position embedding
-    pos_embed_checkpoint = checkpoint_model['pos_embed']
+    # find positional embedding key in checkpoint (handle prefixes like 'base_model.model.pos_embed' or 'module.base_model.model.pos_embed')
+    pos_embed_key = None
+    if 'pos_embed' in checkpoint_model:
+        pos_embed_key = 'pos_embed'
+    else:
+        for k in checkpoint_model.keys():
+            if k.endswith('pos_embed'):
+                pos_embed_key = k
+                break
+    if pos_embed_key is None:
+        raise KeyError("pos_embed not found in checkpoint. Available keys: " + ", ".join(list(checkpoint_model.keys())[:50]))
+    pos_embed_checkpoint = checkpoint_model[pos_embed_key]
     embedding_size = pos_embed_checkpoint.shape[-1]
     num_patches = model.patch_embed.num_patches
     num_extra_tokens = model.pos_embed.shape[-2] - num_patches
@@ -65,7 +76,8 @@ def load_model_from_checkpoint(checkpoint_path: str, model_type: str, n_class: i
         pos_tokens, size=(new_size, new_size), mode='bicubic', align_corners=False)
     pos_tokens = pos_tokens.permute(0, 2, 3, 1).flatten(1, 2)
     new_pos_embed = torch.cat((extra_tokens, pos_tokens), dim=1)
-    checkpoint_model['pos_embed'] = new_pos_embed
+    # replace the same key we found with the resized positional embedding
+    checkpoint_model[pos_embed_key] = new_pos_embed
 
     model.head = torch.nn.Linear(model.head.in_features, n_class)
 
@@ -77,6 +89,9 @@ def load_model_from_checkpoint(checkpoint_path: str, model_type: str, n_class: i
             if k in checkpoint_model and checkpoint_model[k].shape != state_dict[k].shape:
                 print(f"Removing key {k} from pretrained checkpoint")
                 del checkpoint_model[k]
+
+        model.load_state_dict(checkpoint_model, strict=False)
+
         if freeze:
             #freeze backbone parameters
             for p in model.parameters():

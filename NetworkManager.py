@@ -128,6 +128,7 @@ class NetworkManager(object):
         # plt.savefig(self.options['net_choice']+str(self.options['model_choice'])+'.png')
 
     def _accuracy(self):
+        training_mode = self.net.training
         self.net.eval()
         num_total = 0
         num_acc = 0
@@ -139,9 +140,11 @@ class NetworkManager(object):
                 _, pred = torch.max(output, 1)
                 num_acc += torch.sum(pred==labels.detach_())
                 num_total += labels.size(0)
+        if training_mode:
+            self.net.train()
         return num_acc.detach().cpu().numpy()*100/num_total
 
-    def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
+    def save_checkpoint(self, state, is_best, filename='checkpoint.pth.tar'):
         torch.save(state, filename)
         if is_best:
             shutil.copyfile(filename, 'model_best.pth.tar')
@@ -156,7 +159,7 @@ class NetworkManager(object):
                 n_class = self.dataset_options['n_class'],
                 img_size = self.net_options['img_size'],
                 model_type = self.net_options['model_type'],
-                freeze = False,
+                freeze = self.net_options.get('freeze_params', False),
                 mode = mode
             )
 

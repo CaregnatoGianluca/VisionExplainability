@@ -82,7 +82,11 @@ elif DATASET == "cub":
     train_loader, test_loader = cub.get_exp_dataloaders(batch_size=DEFAULT_BATCH_SIZE, root=cub_dataset_options['data_root'], img_size=DEFAULT_IMG_SIZE, use_padding=USE_PADDING)
     dataset_options = cub_dataset_options
 elif DATASET == "kdef":
-    gaze_loader = kdef.get_gaze_data_loader(batchsize=DEFAULT_BATCH_SIZE, data_dir=kdef_dataset_options['gaze_dir'])
+    gaze_loader = kdef.get_gaze_data_loader(
+        batchsize=DEFAULT_BATCH_SIZE,
+        data_dir=kdef_dataset_options['gaze_dir'],
+        heatmap_dir=kdef_dataset_options['heatmap_dir']
+    )
     train_loader, test_loader = None, None
     dataset_options = kdef_dataset_options
 
@@ -320,7 +324,7 @@ elif DATASET == "kdef":
                                                 heatmap_dir = kdef_dataset_options['heatmap_dir'], 
                                                 images_dir = kdef_dataset_options['gaze_dir'])
                 if gaze_image is None:
-                    print(f"Gaze Map File not found, skipping: {id}")
+                    print(f"Gaze Map File not found, skipping: {image_filename}")
                     continue
                 if USE_PADDING:
                     gaze_image = pad_to_square(gaze_image)
@@ -334,14 +338,14 @@ elif DATASET == "kdef":
                 if image_filename not in dataset_scores_dict:
                     dataset_scores_dict[image_filename] = {"index": idx, "train": False}
 
-                if net_options['net_choice']+str(net_options['model_choice']) not in dataset_scores_dict[id]:
-                    dataset_scores_dict[id][net_options['net_choice']+str(net_options['model_choice'])] = {}
+                if net_options['net_choice']+str(net_options['model_choice']) not in dataset_scores_dict[image_filename]:
+                    dataset_scores_dict[image_filename][net_options['net_choice']+str(net_options['model_choice'])] = {}
 
                 curr_cam_images = {cam_name: batch_cam_images[cam_name][i] for cam_name in batch_cam_images}
                 for cam_name, cam_image in curr_cam_images.items():
                     scores = hsm.calc_jss_chi2_pcc_scores(cam_image, gaze)
                     #print(f"Scores for {cam_name}: {scores}")
-                    dataset_scores_dict[id][net_options['net_choice']+str(net_options['model_choice'])][cam_name] = scores
+                    dataset_scores_dict[image_filename][net_options['net_choice']+str(net_options['model_choice'])][cam_name] = scores
 
                 if output_options['save_metrics']:
                     with open(os.path.join(output_options['output_folder_path'], dataset_options['name'], output_options['metrics_filename']), 'w') as f:
@@ -353,7 +357,7 @@ elif DATASET == "kdef":
                         images[i] = (images[i] - images[i].min()) / (images[i].max() - images[i].min())
                         heatmap = show_cam_on_image(images[i].permute(1, 2, 0).cpu().numpy(), cam_image, use_rgb=True, image_weight=0.5)
                         heatmap_img = Image.fromarray(heatmap)
-                        heatmap_save_path = os.path.join(output_options['output_folder_path'], dataset_options['name'], output_options['heatmap_save_path'], net_options['net_choice']+str(net_options['model_choice']), cam_name, id+'.jpg')
+                        heatmap_save_path = os.path.join(output_options['output_folder_path'], dataset_options['name'], output_options['heatmap_save_path'], net_options['net_choice']+str(net_options['model_choice']), cam_name, image_filename+'.jpg')
                         os.makedirs(os.path.dirname(heatmap_save_path), exist_ok=True)
                         heatmap_img.save(heatmap_save_path)
                         print(f"Saved heatmap to {heatmap_save_path}")
