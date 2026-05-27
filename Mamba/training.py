@@ -21,10 +21,10 @@ from huggingface_hub import hf_hub_download
 
 # %%
 DEFAULT_BATCH_SIZE   = 32
-DEFAULT_BASE_LR      = 1e-5 #much lower to avoid catastrophic forgetting (5e-6)
-DEFAULT_EPOCHS       = 600 #new finetuning uses 30 but is too low for a low LR and WD
+DEFAULT_BASE_LR      = 5e-5 # higher LR for adapter/fine-tuning training
+DEFAULT_EPOCHS       = 600 # enough to see progress more quickly
 DEFAULT_MOMENTUM     = 0.9
-DEFAULT_WEIGHT_DECAY = 1e-8 #reduced to adapt more
+DEFAULT_WEIGHT_DECAY = 1e-6 # a small but nonzero weight decay
 DEFAULT_GPU_ID       = 0
 DEFAULT_IMG_SIZE     = 448
 DEFAULT_NUM_WORKERS  = 4
@@ -43,7 +43,9 @@ net_options = {
     'img_size': DEFAULT_IMG_SIZE,
     'device': torch.device('cuda:'+str(DEFAULT_GPU_ID) if torch.cuda.is_available() else 'cpu'),
     'checkpoint_path': hf_hub_download(repo_id="hustvl/Vim-base-midclstok", filename="vim_b_midclstok_81p9acc.pth"),
-    'freeze_params': True,
+    'freeze_params': False,  # try training the full model first
+    'use_lora': False,      # disable LoRA for a simpler baseline
+    'scheduler': 'CosineAnnealingLR',
     'model_type': MODEL_CHOICES[0],
     'save_folder_path': './model_save'
 }
@@ -73,6 +75,9 @@ elif DATASET == "kdef":
 
 print("OPTIONS VALUES")
 print(dataset_options)
+print("NET OPTIONS")
+for k,v in net_options.items():
+    print(f"  {k}: {v}")
 
 manager = NetworkManager.NetworkManager(net_options, dataset_options, train_loader, test_loader)
 
