@@ -31,13 +31,14 @@ class LRP:
         one_hot = np.zeros((1, output.size()[-1]), dtype=np.float32)
         one_hot[0, index] = 1
         one_hot_vector = one_hot
+        device = input.device
         one_hot = torch.from_numpy(one_hot).requires_grad_(True)
-        one_hot = torch.sum(one_hot.cuda() * output)
+        one_hot = torch.sum(one_hot.to(device) * output)
 
         self.model.zero_grad()
         one_hot.backward(retain_graph=True)
 
-        return self.model.relprop(torch.tensor(one_hot_vector).to(input.device), method=method, is_ablation=is_ablation,
+        return self.model.relprop(torch.tensor(one_hot_vector).to(device), method=method, is_ablation=is_ablation,
                                   start_layer=start_layer, **kwargs)
 
 
@@ -48,14 +49,15 @@ class Baselines:
         self.model.eval()
 
     def generate_cam_attn(self, input, index=None):
-        output = self.model(input.cuda(), register_hook=True)
+        device = input.device
+        output = self.model(input.to(device), register_hook=True)
         if index == None:
             index = np.argmax(output.cpu().data.numpy())
 
         one_hot = np.zeros((1, output.size()[-1]), dtype=np.float32)
         one_hot[0][index] = 1
         one_hot = torch.from_numpy(one_hot).requires_grad_(True)
-        one_hot = torch.sum(one_hot.cuda() * output)
+        one_hot = torch.sum(one_hot.to(device) * output)
 
         self.model.zero_grad()
         one_hot.backward(retain_graph=True)
