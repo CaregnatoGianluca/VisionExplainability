@@ -50,6 +50,7 @@ net_options = {
     'momentum': DEFAULT_MOMENTUM,
     'img_size': DEFAULT_IMG_SIZE,
     'device': torch.device('cuda:'+str(DEFAULT_GPU_ID) if torch.cuda.is_available() else 'cpu'),
+    'freeze_backbone': False,
     'save_folder_path': './model_save'
 }
 
