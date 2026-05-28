@@ -74,7 +74,7 @@ kdef_dataset_options = kdef.dataset_options
 # %%
 # --------------------- EDIT THIS TO CHANGE DATASET AND MODEL STATE --------------------- #
 DATASET = "kdef"  # Options: "cxr", "cub" or "kdef"
-FROZEN = True   # True for Frozen weights, False for Unfrozen weights
+FROZEN = False   # True for Frozen weights, False for Unfrozen weights
 BASE_WEIGHTS_DIR = "../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation"
 
 
