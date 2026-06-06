@@ -123,7 +123,10 @@ output_options = {
     'save_heatmaps':True,
     'heatmap_save_path': 'heatmaps',
     'save_metrics':True,
-    'metrics_filename': 'heatmap_scores.json'
+    'metrics_filename': 'heatmap_scores.json',
+    'save_only_gaze': True,
+    'gaze_output_folder_path': './output_gaze',
+    'only_gaze_save_path': 'only_gaze'
 }
 
 cxr_dataset_options = cxr.dataset_options
@@ -474,6 +477,14 @@ elif DATASET == "kdef":
                 os.makedirs(os.path.dirname(heatmap_save_path), exist_ok=True)
                 adjusted_heatmap.save(heatmap_save_path)
                 print(f"Saved heatmap to {heatmap_save_path}")
+
+            if output_options['save_only_gaze']:
+                # Save the raw relevance/attention map alone (grayscale, no image overlay)
+                only_gaze_img = Image.fromarray(np.uint8(255 * heatmap)).convert("L")
+                only_gaze_path = os.path.join(output_options['gaze_output_folder_path'], dataset_options['name'], output_options['only_gaze_save_path'], net_options['net_choice']+str(net_options['model_choice']), "original", image_filename)
+                os.makedirs(os.path.dirname(only_gaze_path), exist_ok=True)
+                only_gaze_img.save(only_gaze_path)
+                print(f"Saved only_gaze to {only_gaze_path}")
 
 # %% [markdown]
 # ## TRAIN HEATMAPS
