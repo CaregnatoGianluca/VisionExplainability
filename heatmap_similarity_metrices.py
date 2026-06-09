@@ -1,10 +1,20 @@
 import numpy as np
 from PIL import Image
-import torch
 import warnings
 from scipy.spatial.distance import jensenshannon
 from scipy.stats import pearsonr, chisquare
-import cv2
+
+# torch is only used for an isinstance() check on optional tensor inputs, and cv2
+# is not used here at all. Import them lazily so this module (and compare_heatmap)
+# can run on a minimal environment (numpy/scipy/pandas/pillow) without torch/opencv.
+try:
+    import torch
+except Exception:
+    torch = None
+try:
+    import cv2  # noqa: F401  (kept for backwards compatibility; unused in this module)
+except Exception:
+    cv2 = None
 
 
 
@@ -27,7 +37,7 @@ def saliency_to_distribution(saliency_map, target_size=None, eps=1e-12):
     if isinstance(saliency_map, Image.Image):
         # PIL image
         array = np.array(saliency_map, dtype=np.float64)
-    elif isinstance(saliency_map, torch.Tensor):
+    elif torch is not None and isinstance(saliency_map, torch.Tensor):
         # PyTorch tensor
         array = saliency_map.detach().cpu().numpy().astype(np.float64)
     elif isinstance(saliency_map, np.ndarray):
