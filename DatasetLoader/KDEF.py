@@ -9,10 +9,10 @@ from sklearn.model_selection import train_test_split
 
 dataset_options = {
     'name': 'KDEF',
-    'root_dir': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/KDEF/dataset/',
+    'root_dir': '../drive_folder/KDEF/dataset',
     'n_class': 7,
-    'gaze_dir': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/KDEF/karolinska',
-    'heatmap_dir': '../drive_folder/Bridging_Human_and_Model_Attention_Explainability_Analysis_of_CNN_Mamba_and_ViT_Architectures_with_Gaze-Based_Validation/KDEF/DensityByExpressionAndImage_GPU_sigma20',
+    'gaze_dir': '../drive_folder/KDEF/karolinska',
+    'heatmap_dir': '../drive_folder/KDEF/DensityByExpressionAndImage_GPU_sigma20',
 }
 
 def pad_to_square(img, fill=0):
